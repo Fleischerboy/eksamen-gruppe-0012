@@ -9,9 +9,9 @@ const studentClasses = [
   'digitale medier og design',
 ]
 
-const studentFactory = (number: Number | null) => {
+const studentFactory = (number: Number) => {
   return Array(number)
-    .fill(null)
+    .fill(0)
     .map(() => {
       return {
         name: faker.name.firstName(),
