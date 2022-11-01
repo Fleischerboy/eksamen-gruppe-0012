@@ -7,7 +7,9 @@ export const useStudent = () => {
   const [students, setStudents] = useState<StudentData[]>([])
   const [sortMethod, setSortMethod] = useState<Method>('nothing')
 
-  const handleSortMethodChange = (sortMethod: Method) => {}
+  const handleSortMethodChange = (sortMethod: Method) => {
+    
+  }
 
   return {
     students,
