@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useRef } from 'react'
+import StudentList from '../components/StudentList'
 import { useStudent } from '../hooks/useStudent'
 import fetch from '../lib/fetch'
 
@@ -24,12 +25,12 @@ const Home: NextPage = () => {
       }
     }
     handler()
-  }, [])
+  }, [setStudents])
 
   return (
     <main>
       <h1>Student gruppering</h1>
-
+      <StudentList data={students.sort()} />
 
     </main>
   )
