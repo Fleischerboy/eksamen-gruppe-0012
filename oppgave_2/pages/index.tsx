@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useRef } from 'react'
+import SortOptionsTable from '../components/SortOptionsTable'
 import StudentList from '../components/StudentList'
 import { useStudent } from '../hooks/useStudent'
 import fetch from '../lib/fetch'
@@ -30,6 +31,7 @@ const Home: NextPage = () => {
   return (
     <main>
       <h1>Student gruppering</h1>
+      <SortOptionsTable />
       <StudentList data={students.sort()} />
 
     </main>
