@@ -14,4 +14,4 @@ export type StudentData = {
 
 export type GenderType = 'female' | 'male'
 
-export type SortMethod = 'ingen' | 'alder' | 'kjønn' | 'klasse'
+export type Method = 'nothing' | 'age' | 'gender' | 'class'

@@ -9,7 +9,10 @@ const Home: NextPage = () => {
   const isFirstRender = useRef(true)
   const {
     students,
+    sortMethod,
+    sortMethods,
     setStudents,
+    handleSortMethodChange
   } = useStudent();
 
   useEffect(() => {
@@ -31,7 +34,7 @@ const Home: NextPage = () => {
   return (
     <main>
       <h1>Student gruppering</h1>
-      <SortOptionsTable />
+      <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
       <StudentList data={students.sort()} />
 
     </main>
