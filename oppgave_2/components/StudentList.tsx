@@ -1,10 +1,10 @@
 import { Method, StudentData } from "../types";
 
-type studentProp = {
+type StudentProp = {
     data: StudentData[]
 }
 
-const StudentList = ({ data }: studentProp) => {
+const StudentList = ({ data }: StudentProp) => {
     return (
         <>
             <ul className="student-list">

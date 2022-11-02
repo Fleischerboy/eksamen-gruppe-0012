@@ -17,6 +17,12 @@ const Home: NextPage = () => {
 
     // sort algos
     sortStudentsByAlphabeticalOrder,
+    sortStudentsByAge,
+    sortStudentsByGender,
+    sortStudentsByFieldOfStudy,
+
+    // groupBY
+    groupByStudentProperty,
   } = useStudent();
 
   useEffect(() => {
@@ -37,11 +43,15 @@ const Home: NextPage = () => {
 
   return (
     <main>
-      <h1>Student gruppering {sortMethod}</h1>
+      <h1>Student gruppering</h1>
       <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
-      {sortMethod === 'nothing' ? <StudentList data={sortStudentsByAlphabeticalOrder()} /> : <GroupedStudentList sortType={sortMethod} />}
-      {/*hmmm skal denne komponenten ha kun ansvar for det å liste ut studenter når sortmethod er satt til 'ingen'?*/}
-
+      <GroupedStudentList
+        groupByStudentProperty={groupByStudentProperty}
+        sortType={sortMethod}
+        sortStudentsByAlphabeticalOrder={sortStudentsByAlphabeticalOrder}
+        sortStudentsByAge={sortStudentsByAge}
+        sortStudentsByGender={sortStudentsByGender}
+        sortStudentsByFieldOfStudy={sortStudentsByFieldOfStudy} />
     </main>
   )
 }
