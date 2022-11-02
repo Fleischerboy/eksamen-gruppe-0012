@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useRef } from 'react'
+import GroupedStudentList from '../components/GroupedStudentList'
 import SortOptionsTable from '../components/SortOptionsTable'
 import StudentList from '../components/StudentList'
 import { useStudent } from '../hooks/useStudent'
@@ -12,7 +13,10 @@ const Home: NextPage = () => {
     sortMethod,
     sortMethods,
     setStudents,
-    handleSortMethodChange
+    handleSortMethodChange,
+
+    // sort algos
+    sortStudentsByAlphabeticalOrder,
   } = useStudent();
 
   useEffect(() => {
@@ -33,9 +37,10 @@ const Home: NextPage = () => {
 
   return (
     <main>
-      <h1>Student gruppering</h1>
+      <h1>Student gruppering {sortMethod}</h1>
       <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
-      <StudentList data={students.sort()} />
+      {sortMethod === 'nothing' ? <StudentList data={sortStudentsByAlphabeticalOrder()} /> : <GroupedStudentList sortType={sortMethod} />}
+      {/*hmmm skal denne komponenten ha kun ansvar for det å liste ut studenter når sortmethod er satt til 'ingen'?*/}
 
     </main>
   )
