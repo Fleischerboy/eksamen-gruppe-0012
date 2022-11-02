@@ -23,6 +23,9 @@ const Home: NextPage = () => {
 
     // groupBY
     groupByStudentProperty,
+
+
+
   } = useStudent();
 
   useEffect(() => {
@@ -44,15 +47,17 @@ const Home: NextPage = () => {
 
   return (
     <main>
-      <h1>Student gruppering</h1>
-      <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
-      <GroupedStudentList
-        groupByStudentProperty={groupByStudentProperty}
-        sortType={sortMethod}
-        sortStudentsByAlphabeticalOrder={sortStudentsByAlphabeticalOrder}
-        sortStudentsByAge={sortStudentsByAge}
-        sortStudentsByGender={sortStudentsByGender}
-        sortStudentsByFieldOfStudy={sortStudentsByFieldOfStudy} />
+      <>
+        <h1>Student gruppering</h1>
+        <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
+        <GroupedStudentList
+          groupByStudentProperty={groupByStudentProperty}
+          sortType={sortMethod}
+          sortStudentsByAlphabeticalOrder={sortStudentsByAlphabeticalOrder}
+          sortStudentsByAge={sortStudentsByAge}
+          sortStudentsByGender={sortStudentsByGender}
+          sortStudentsByFieldOfStudy={sortStudentsByFieldOfStudy} />
+      </>
     </main>
   )
 }

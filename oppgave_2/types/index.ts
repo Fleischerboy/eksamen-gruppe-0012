@@ -15,13 +15,3 @@ export type StudentData = {
 export type GenderType = 'female' | 'male'
 
 export type Method = 'Ingen' | 'Alder' | 'Kjønn' | 'Klasse'
-
-export type Student = {
-  id: string
-  name: string
-  gender: string
-  age: number
-  group: string
-}
-
-

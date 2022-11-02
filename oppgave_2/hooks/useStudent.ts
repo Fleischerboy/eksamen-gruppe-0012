@@ -13,7 +13,12 @@ export const useStudent = () => {
 
   const sortStudentsByAlphabeticalOrder = () => {
     return students.sort(
-      (studentOne, studentTwo) => (studentOne.name > studentTwo.name ? 1 : -1) // 1 = bigger, -1: smaller, (0 = equal // TODO litt usikker på om dette gjøres under the hood?);
+      (studentOne, studentTwo) =>
+        studentOne.name > studentTwo.name
+          ? 1
+          : studentOne.name === studentTwo.name
+          ? 0
+          : -1 // 1 = bigger, -1: smaller and 0: equal
     )
   }
 
