@@ -1,28 +1,35 @@
-import { Student, Method } from '../types'
-import Group from './Group'
+import { Method, StudentData } from "../types";
 
-type StudentListProps = {
-  sortMethod: Method
-  studentData: Student[]
+type StudentProp = {
+    data: StudentData[]
 }
 
-export default function StudentList({
-  sortMethod,
-  studentData,
-}: StudentListProps) {
-  //TODO fix prop
-  let studentListsSorted: any = []
-  const Grouper = () => {
-    //return list of mulitple lists with students sorted
-    studentListsSorted.array.forEach((element) => {})
-    studentData.filter()
-  }
-
-  return (
-    <>
-      {studentListsSorted.map((data) => (
-        <Group studentData={data} sortMethod={sortMethod} />
-      ))}
-    </>
-  )
+const StudentList = ({ data }: StudentProp) => {
+    return (
+        <>
+            <ul className="student-list">
+                {data.map((student, index) => (
+                    <li key={index} className="student-list-item">
+                        <span>
+                            {student.id}
+                        </span>
+                        <span>
+                            {student.name}
+                        </span>
+                        <span>
+                            {student.age}
+                        </span>
+                        <span>
+                            {student.gender}
+                        </span>
+                        <span>
+                            {student.group}
+                        </span>
+                    </li>
+                ))}
+            </ul>
+        </>
+    )
 }
+
+export default StudentList;

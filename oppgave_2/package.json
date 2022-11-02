@@ -6,13 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "vitest"
+    "test": "vitest",
+    "prisma:init": "prisma init",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:generate": "prisma generate",
+    "prisma:seed": "prisma db seed",
+    "prisma:push": "prisma db push"
   },
   "dependencies": {
     "@prisma/client": "4.5.0",
+    "@prisma/studio": "^0.476.0",
     "next": "12.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
@@ -22,6 +29,7 @@
     "@types/node": "18.11.6",
     "@types/react": "18.0.23",
     "@types/react-dom": "18.0.7",
+    "@types/uuid": "^8.3.4",
     "@vitejs/plugin-react": "^2.2.0",
     "esbuild-register": "^3.3.3",
     "eslint": "8.26.0",

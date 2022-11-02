@@ -1,30 +1,58 @@
 import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import GroupedStudentList from '../components/GroupedStudentList'
+import SortOptionsTable from '../components/SortOptionsTable'
 import StudentList from '../components/StudentList'
-import SortOption from '../components/SortOption'
-import { Method } from '../types'
+import { useStudent } from '../hooks/useStudent'
+import fetch from '../lib/fetch'
+
 const Home: NextPage = () => {
-  const [sortMethod, setSortMethod] = useState(undefined)
+  const isFirstRender = useRef(true)
+  const {
+    students,
+    sortMethod,
+    sortMethods,
+    setStudents,
+    handleSortMethodChange,
+
+    // sort algos
+    sortStudentsByAlphabeticalOrder,
+    sortStudentsByAge,
+    sortStudentsByGender,
+    sortStudentsByFieldOfStudy,
+
+    // groupBY
+    groupByStudentProperty,
+  } = useStudent();
 
   useEffect(() => {
+    if (!isFirstRender.current) return
+    isFirstRender.current = false
     const handler = async () => {
       try {
+        const response = await fetch("/api/students", {
+          method: 'GET'
+        })
+        setStudents(response.data);
       } catch (error) {
         console.log(error)
       }
     }
     handler()
-  }, [])
+  }, [setStudents])
 
-  const getSortMethod = (method: Method) => {
-    setSortMethod(method)
-  }
 
   return (
     <main>
       <h1>Student gruppering</h1>
-      <SortOption getSortMethod={getSortMethod} />
-      <StudentList sortMethod={sortMethod} studentData={studentData} />
+      <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
+      <GroupedStudentList
+        groupByStudentProperty={groupByStudentProperty}
+        sortType={sortMethod}
+        sortStudentsByAlphabeticalOrder={sortStudentsByAlphabeticalOrder}
+        sortStudentsByAge={sortStudentsByAge}
+        sortStudentsByGender={sortStudentsByGender}
+        sortStudentsByFieldOfStudy={sortStudentsByFieldOfStudy} />
     </main>
   )
 }
