@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useRef } from 'react'
+import GroupedStudentList from '../components/GroupedStudentList'
 import SortOptionsTable from '../components/SortOptionsTable'
 import StudentList from '../components/StudentList'
 import { useStudent } from '../hooks/useStudent'
@@ -12,7 +13,16 @@ const Home: NextPage = () => {
     sortMethod,
     sortMethods,
     setStudents,
-    handleSortMethodChange
+    handleSortMethodChange,
+
+    // sort algos
+    sortStudentsByAlphabeticalOrder,
+    sortStudentsByAge,
+    sortStudentsByGender,
+    sortStudentsByFieldOfStudy,
+
+    // groupBY
+    groupByStudentProperty,
   } = useStudent();
 
   useEffect(() => {
@@ -35,8 +45,13 @@ const Home: NextPage = () => {
     <main>
       <h1>Student gruppering</h1>
       <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
-      <StudentList data={students.sort()} />
-
+      <GroupedStudentList
+        groupByStudentProperty={groupByStudentProperty}
+        sortType={sortMethod}
+        sortStudentsByAlphabeticalOrder={sortStudentsByAlphabeticalOrder}
+        sortStudentsByAge={sortStudentsByAge}
+        sortStudentsByGender={sortStudentsByGender}
+        sortStudentsByFieldOfStudy={sortStudentsByFieldOfStudy} />
     </main>
   )
 }
