@@ -63,7 +63,6 @@ export const useStudent = () => {
   }
 
   return {
-    students,
     sortMethod,
     sortMethods,
     setStudents,
