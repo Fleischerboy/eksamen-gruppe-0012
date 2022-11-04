@@ -1,3 +1,4 @@
+import { StudentData } from './../types/index'
 import { PrismaClient } from '@prisma/client'
 import { faker } from '@faker-js/faker'
 
@@ -9,20 +10,29 @@ const studentClasses = [
   'digitale medier og design',
 ]
 
+const createRandomStudent = () => {
+  const sex = faker.name.sexType()
+  const name = faker.name.firstName(sex)
+  const age = faker.datatype.number({
+    min: 18,
+    max: 50,
+  })
+  const group =
+    studentClasses[Math.floor(Math.random() * studentClasses.length)]
+
+  return {
+    name: name,
+    gender: sex,
+    age: age,
+    group: group,
+  }
+}
+
 const studentFactory = (number: Number) => {
   return Array(number)
     .fill(0)
     .map(() => {
-      return {
-        name: faker.name.firstName(),
-        gender: faker.name.sexType(),
-        age: faker.datatype.number({
-          min: 18,
-          max: 50,
-        }),
-        group:
-          studentClasses[Math.floor(Math.random() * studentClasses.length)],
-      }
+      return createRandomStudent()
     })
 }
 
