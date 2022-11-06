@@ -3,12 +3,8 @@
 import { useState } from 'react'
 import { Strike } from '../components/Strikes'
 
-const initialStrikes = [
-  { icon: '⚪', guess: '' },
-  { icon: '⚪', guess: '' },
-  { icon: '⚪', guess: '' },
-]
-
+const initialStrikes = [{ icon: '⚪' }, { icon: '⚪' }, { icon: '⚪' }]
+                                  // fjernet guess properties siden det ikke har noen brukstilfeller
 type Country = {
   name: string
   unicodeFlag: string
@@ -27,8 +23,10 @@ export const useGame = () => {
       }
     )
   }
-
-  const isGameOver = strikes.every((strike: any) => strike.guess) ? true : false
+      // sant når det ikke er noen sirkelikoner igjen
+  const isGameOver = strikes.every((strike: any) => strike.icon !== '⚪')
+    ? true
+    : false
 
   const getMessage = () => {
     if (isSolved(country, guesses) && !isGameOver) return 'Du klarte det'
@@ -53,6 +51,9 @@ export const useGame = () => {
     if (!country?.name?.toLowerCase().includes(letter.toLowerCase())) {
       const strikeCopy = [...strikes]
       strikeCopy.pop()
+      strikeCopy.unshift({ icon: '🚫' })         // pusher forbudsikonet til første indeks
+      console.log(strikeCopy)              // oppdaterer streikelisten for å representere antall sjanser igjen
+      setStrikes(strikeCopy)
     }
     setGuesses((prev: string[]) => [...prev, letter.toLowerCase()])
   }
@@ -66,6 +67,7 @@ export const useGame = () => {
     setCountry,
     isMatch,
     isGameOver,
+    isSolved,
     handleGuess,
     getMessage,
     wordSplit,
