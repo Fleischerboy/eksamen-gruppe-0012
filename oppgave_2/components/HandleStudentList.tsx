@@ -31,13 +31,8 @@ const HandleStudentList = ({ sortType, sortStudentsByAlphabeticalOrder, sortStud
             return <GroupedStudentCards data={groupByFieldOfStudy} sortType={sortType} />
         }
         default:
-            return <h1>Sort type not supported</h1>;
+            return <h1>Sorteringstype støttes ikke</h1>;
     }
-
-
-
-
-
 }
 
 export default HandleStudentList;
