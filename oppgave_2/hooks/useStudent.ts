@@ -6,14 +6,14 @@ const sortMethods = ['Ingen', 'Alder', 'Kjønn', 'Klasse']
 export const useStudent = () => {
   const [students, setStudents] = useState<StudentData[]>([])
   const [sortMethod, setSortMethod] = useState<Method>('Ingen')
-  const studentList = [...students] // copy
+  const studentsCopy = [...students] // copy
   const handleSortMethodChange = (sortMethod: Method) => {
     setSortMethod(sortMethod)
   }
 
   const sortStudentsByAlphabeticalOrder = () => {
     // 1 = bigger, -1: smaller and 0: equal
-    return studentList.sort((studentOne, studentTwo) =>
+    return studentsCopy.sort((studentOne, studentTwo) =>
       studentOne.name > studentTwo.name
         ? 1
         : studentOne.name === studentTwo.name
@@ -24,7 +24,7 @@ export const useStudent = () => {
 
   const sortStudentsByAge = () => {
     // 1 = bigger, -1: smaller and 0: equal
-    return studentList.sort((studentOne, studentTwo) =>
+    return studentsCopy.sort((studentOne, studentTwo) =>
       studentOne.age > studentTwo.age
         ? 1
         : studentOne.age === studentTwo.age
@@ -35,14 +35,14 @@ export const useStudent = () => {
 
   const sortStudentsByGender = () => {
     // 1 = bigger and -1: smaller
-    return studentList.sort((studentOne, studentTwo) =>
+    return studentsCopy.sort((studentOne, studentTwo) =>
       studentOne.gender > studentTwo.gender ? 1 : -1
     )
   }
 
   const sortStudentsByFieldOfStudy = () => {
     // 1 = bigger and -1: smaller
-    return studentList.sort((studentOne, studentTwo) =>
+    return studentsCopy.sort((studentOne, studentTwo) =>
       studentOne.group > studentTwo.group ? 1 : -1
     )
   }

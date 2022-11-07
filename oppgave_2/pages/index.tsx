@@ -4,7 +4,7 @@ import HandleStudentList from '../components/HandleStudentList'
 import SortOptionsTable from '../components/SortOptionsTable'
 import { useStudent } from '../hooks/useStudent'
 import { getStudents } from '../api/students'
-import { Status } from '../types'
+import { Data, Result, Status, StudentData } from '../types'
 
 
 
