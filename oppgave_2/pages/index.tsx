@@ -1,15 +1,24 @@
 import type { NextPage } from 'next'
-import { useEffect, useRef } from 'react'
-import GroupedStudentList from '../components/GroupedStudentList'
+import { useEffect, useRef, useState } from 'react'
+import HandleStudentList from '../components/HandleStudentList'
 import SortOptionsTable from '../components/SortOptionsTable'
-import StudentList from '../components/StudentList'
 import { useStudent } from '../hooks/useStudent'
-import fetch from '../lib/fetch'
+import { getStudents } from '../api/students'
+import { Data, Result, Status, StudentData } from '../types'
+
+
 
 const Home: NextPage = () => {
   const isFirstRender = useRef(true)
+  const [status, setStatus] = useState<Status>('idle')
+  const [error, setError] = useState<Error>()
+
+  const isLoading = status === 'loading'
+  const isError = status === 'error'
+  const isSuccess = status === 'success'
+
+
   const {
-    students,
     sortMethod,
     sortMethods,
     setStudents,
@@ -23,36 +32,55 @@ const Home: NextPage = () => {
 
     // groupBY
     groupByStudentProperty,
+
+
+
   } = useStudent();
 
   useEffect(() => {
     if (!isFirstRender.current) return
     isFirstRender.current = false
     const handler = async () => {
+      setStatus('loading')
       try {
-        const response = await fetch("/api/students", {
-          method: 'GET'
-        })
+        const response = await getStudents({});
+        setStatus('success')
         setStudents(response.data);
+
       } catch (error) {
-        console.log(error)
+        setStatus('error')
+        setError(error as any)
       }
     }
     handler()
   }, [setStudents])
 
+  if (isLoading) {
+    return <main><h1>Henter data...</h1></main>
+  }
+
+  if (isError) {
+    return (
+      <main>
+        <h1>Noe gikk galt...</h1>
+        <h3>Error: {JSON.stringify(error)}</h3>
+      </main>
+    )
+  }
 
   return (
     <main>
-      <h1>Student gruppering</h1>
-      <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
-      <GroupedStudentList
-        groupByStudentProperty={groupByStudentProperty}
-        sortType={sortMethod}
-        sortStudentsByAlphabeticalOrder={sortStudentsByAlphabeticalOrder}
-        sortStudentsByAge={sortStudentsByAge}
-        sortStudentsByGender={sortStudentsByGender}
-        sortStudentsByFieldOfStudy={sortStudentsByFieldOfStudy} />
+      <>
+        <h1>Student gruppering</h1>
+        <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
+        <HandleStudentList
+          groupByStudentProperty={groupByStudentProperty}
+          sortType={sortMethod}
+          sortStudentsByAlphabeticalOrder={sortStudentsByAlphabeticalOrder}
+          sortStudentsByAge={sortStudentsByAge}
+          sortStudentsByGender={sortStudentsByGender}
+          sortStudentsByFieldOfStudy={sortStudentsByFieldOfStudy} />
+      </>
     </main>
   )
 }

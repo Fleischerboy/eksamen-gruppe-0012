@@ -11,16 +11,14 @@ const GroupedStudentCards = ({ data, sortType }: StudentProps) => {
 
     return (
         <>
-            <div>
-                {
-                    [...data].map((entry) => {
-                        const key = entry[0]
-                        const value = entry[1]
-                        return <GroupedStudentCard key={uuidv4()} objectKey={key} data={value} sortType={sortType} />
+            {
+                [...data].map((entry) => {
+                    const key = entry[0]
+                    const value = entry[1]
+                    return <GroupedStudentCard key={uuidv4()} objectKey={key} data={value} sortType={sortType} />
 
-                    })
-                }
-            </div>
+                })
+            }
         </>
 
 

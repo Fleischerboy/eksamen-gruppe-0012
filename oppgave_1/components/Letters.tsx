@@ -5,10 +5,10 @@ const letterList = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ')
 type LettersProps = {
   getMessage: () => string
   guesses: string[]
-  handleGuess: (letter: number) => void
-}
+  handleGuess: (letter: string) => void   // endret bokstavargumenttype fra tall til string
+} 
 
-type LetterProps = Pick<LettersProps, 'handleGuess' | 'guesses'> & {
+type LetterProps = Pick<LettersProps, 'handleGuess' | 'guesses' | 'getMessage'> & {
   letter: string
 }
 
@@ -21,12 +21,13 @@ export default function Letters({
     <>
       <p className="message">{getMessage()}</p>
       <ul className="letters">
-        {letterList.forEach((letter) => (
+        {letterList.map((letter) => (         /* Bruker map funksjon istedenfor forEach funksjon for å gjengi bokstavkomponenter   */
           <Letter
             handleGuess={handleGuess}
             guesses={guesses}
             key={letter}
             letter={letter}
+            getMessage={getMessage}
           />
         ))}
       </ul>
@@ -34,13 +35,14 @@ export default function Letters({
   )
 }
 
-const Letter = ({ letter, handleGuess, guesses }: LetterProps) => {
-  const letterMatch = guesses.includes(letter.toLowerCase())
+const Letter = ({ letter, handleGuess, guesses, getMessage }: LetterProps) => {
+  const letterMatch = guesses.includes(letter.toLowerCase())                // sant når spillet er løst eller over.
+  const isGameSolvedOrOver = ['Du klarte det', 'Du tapte. Prøv igjen'].includes(getMessage())
   return (
     <button
       onClick={() => handleGuess(letter)}
-      disabled={letterMatch}
-      className={`letter ${letterMatch ? 'highlight' : ''}`}
+      disabled={isGameSolvedOrOver || letterMatch}       // bokstavknappen er deaktivert hvis spillet er løst eller over eller hvis bokstaven allerede er i bruk
+      className={`letter ${letterMatch ? 'highlight' : ''}`}               
     >
       {letter}
     </button>

@@ -3,7 +3,7 @@ import { Method, StudentData } from "../types";
 type CardProps = {
     data: StudentData[]
     sortType: Method
-    objectKey: any
+    objectKey: string | number
 }
 
 const GroupedStudentCard = ({ data, objectKey, sortType }: CardProps) => {
