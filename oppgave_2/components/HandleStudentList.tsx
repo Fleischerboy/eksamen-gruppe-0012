@@ -1,9 +1,8 @@
-import { should } from "vitest";
 import { Method, StudentData } from "../types";
 import GroupedStudentCards from "./GroupedStudentCards";
 import StudentList from "./StudentList";
 
-type GroupedStudentListProps = {
+type HandleStudentListProps = {
     sortType: Method
     sortStudentsByAlphabeticalOrder: () => StudentData[]
     sortStudentsByAge: () => StudentData[]
@@ -12,7 +11,7 @@ type GroupedStudentListProps = {
     groupByStudentProperty: (data: StudentData[], keyGetter: any) => Map<any, any>
 }
 
-const GroupedStudentList = ({ sortType, sortStudentsByAlphabeticalOrder, sortStudentsByAge, sortStudentsByGender, sortStudentsByFieldOfStudy, groupByStudentProperty }: GroupedStudentListProps) => {
+const HandleStudentList = ({ sortType, sortStudentsByAlphabeticalOrder, sortStudentsByAge, sortStudentsByGender, sortStudentsByFieldOfStudy, groupByStudentProperty }: HandleStudentListProps) => {
     switch (sortType) {
         case 'Ingen': {
             return <StudentList data={sortStudentsByAlphabeticalOrder()} />
@@ -32,12 +31,13 @@ const GroupedStudentList = ({ sortType, sortStudentsByAlphabeticalOrder, sortStu
             return <GroupedStudentCards data={groupByFieldOfStudy} sortType={sortType} />
         }
         default:
-            return null;
+            return <h1>Sort type not supported</h1>;
     }
+
 
 
 
 
 }
 
-export default GroupedStudentList;
+export default HandleStudentList;

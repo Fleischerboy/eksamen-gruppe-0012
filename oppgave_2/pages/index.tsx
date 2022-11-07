@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useRef, useState } from 'react'
-import GroupedStudentList from '../components/GroupedStudentList'
+import HandleStudentList from '../components/HandleStudentList'
 import SortOptionsTable from '../components/SortOptionsTable'
 import { useStudent } from '../hooks/useStudent'
 import { getStudents } from '../api/students'
@@ -11,7 +11,7 @@ import { Status } from '../types'
 const Home: NextPage = () => {
   const isFirstRender = useRef(true)
   const [status, setStatus] = useState<Status>('idle')
-  const [error, setError] = useState({})
+  const [error, setError] = useState<Error>()
 
   const isLoading = status === 'loading'
   const isError = status === 'error'
@@ -73,7 +73,7 @@ const Home: NextPage = () => {
       <>
         <h1>Student gruppering</h1>
         <SortOptionsTable sortMethods={sortMethods} handleSortMethodChange={handleSortMethodChange} />
-        <GroupedStudentList
+        <HandleStudentList
           groupByStudentProperty={groupByStudentProperty}
           sortType={sortMethod}
           sortStudentsByAlphabeticalOrder={sortStudentsByAlphabeticalOrder}
