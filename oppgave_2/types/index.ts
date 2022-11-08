@@ -1,11 +1,8 @@
-export type Data = { status: true; data: Record<string, unknown> }
-
-export type Error = { status: false; error: string }
-
-export type Status = 'loading' | 'idle' | 'error' | 'success'
-
+export type Data = { success: true; data: Record<string, unknown> }
+export type Error = { success: false; error: string }
 export type Result = Data | Error
 
+export type Status = 'loading' | 'idle' | 'error' | 'success'
 export type StudentData = {
   id: string
   name: string
@@ -13,7 +10,4 @@ export type StudentData = {
   age: number
   group: string
 }
-
-export type GenderType = 'female' | 'male'
-
 export type Method = 'Ingen' | 'Alder' | 'Kjønn' | 'Klasse'

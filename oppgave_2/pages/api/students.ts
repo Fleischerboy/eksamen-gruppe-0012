@@ -1,16 +1,15 @@
-import { StudentData } from './../../types/index'
+import { Result } from './../../types/index'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import db from '../../lib/db'
-
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<Result>
 ) {
   const { method } = req
 
   if (method?.toLowerCase() === 'get') {
     try {
-      const students: StudentData[] = await db.student.findMany({
+      const students: any = await db.student.findMany({
         orderBy: {
           name: 'asc',
         },
