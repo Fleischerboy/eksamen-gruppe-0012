@@ -1,6 +1,6 @@
 # Dokumentasjon
 
-En applikasjon for lunsj-system
+Applikasjon for lunsj-system
 
 ### API-routes/endpoints - Versjon 1
 

@@ -1,24 +1,24 @@
-import { employees } from './../data/employees';
 export type Data = { status: true; data: Record<string, unknown> }
 export type Error = { status: false; error: string }
 export type Result = Data | Error
 
-export type day =
-  | 'Mandag'
-  | 'Tirsdag'
-  | 'Onsdag'
-  | 'Torsdag'
-  | 'Fredag'
-  | 'Lørdag'
-  | 'Søndag'
-
-
-export type weekData = {
-  
-
+export type Week = {
+  Mandag: Day | null
+  Tirsdag: Day | null
+  Onsdag: Day | null
+  Torsdag: Day | null
+  Fredag: Day | null
 }
 
-export type employee = {
-    
+export interface Year {
+  week: Week[]
+}
+export interface Day {
+  employee: Employee
 }
 
+export type Employee = {
+  id: number
+  name: string
+  rules: string
+}
