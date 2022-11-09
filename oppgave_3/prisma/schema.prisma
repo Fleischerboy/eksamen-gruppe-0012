@@ -13,7 +13,7 @@ generator dbml {
 
 model Employee {
   id    Int    @id
-  name  String
+  name  String @unique
   rules String
   day   Day[]
   dayId String
@@ -34,7 +34,7 @@ model Day {
 
 model Week {
   id      String @id @default(cuid())
-  week    Int
+  week    Int    @unique
   lunch   Lunch  @relation(fields: [lunchId], references: [id])
   lunchId String
   day     Day[]
