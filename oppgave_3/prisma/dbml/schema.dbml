@@ -1,0 +1,39 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table employee {
+  id Int [pk]
+  name String [not null]
+  rules String [not null]
+  day day [not null]
+  dayId String [not null]
+}
+
+Table day {
+  id String [pk]
+  name String [not null]
+  employee employee [not null]
+  employeeId Int [not null]
+  week week [not null]
+  weekId String [not null]
+}
+
+Table week {
+  id String [pk]
+  week Int [not null]
+  lunch lunch [not null]
+  lunchId String [not null]
+  day day [not null]
+}
+
+Table lunch {
+  id String [pk]
+  week week [not null]
+}
+
+Ref: day.employeeId > employee.id
+
+Ref: day.weekId > week.id
+
+Ref: week.lunchId > lunch.id
