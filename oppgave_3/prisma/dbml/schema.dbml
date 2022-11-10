@@ -3,27 +3,26 @@
 //// ------------------------------------------------------
 
 Table employee {
-  id Int [pk]
+  id Int [pk, increment]
   name String [not null]
   rules String [not null]
   day day [not null]
-  dayId String [not null]
 }
 
 Table day {
   id String [pk]
-  name String [not null]
-  employee employee [not null]
-  employeeId Int [not null]
-  week week [not null]
-  weekId String [not null]
+  name String
+  employeeId Int
+  weekId String
+  week week
+  employee employee
 }
 
 Table week {
   id String [pk]
-  week Int [not null]
-  lunch lunch [not null]
+  week Int [unique, not null]
   lunchId String [not null]
+  lunch lunch [not null]
   day day [not null]
 }
 
@@ -32,8 +31,8 @@ Table lunch {
   week week [not null]
 }
 
-Ref: day.employeeId > employee.id
-
 Ref: day.weekId > week.id
+
+Ref: day.employeeId > employee.id
 
 Ref: week.lunchId > lunch.id

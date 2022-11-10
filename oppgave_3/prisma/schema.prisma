@@ -2,41 +2,40 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
 }
 
-generator dbml {
-  provider = "prisma-dbml-generator"
-}
-
 model Employee {
-  id    Int    @id
-  name  String @unique
+  id    Int    @id @default(autoincrement())
+  name  String
   rules String
   day   Day[]
-  dayId String
 
   @@map("employee")
 }
 
 model Day {
-  id         String   @id @default(cuid())
-  name       String
-  employee   Employee @relation(fields: [employeeId], references: [id])
-  employeeId Int
-  week       Week     @relation(fields: [weekId], references: [id])
-  weekId     String
+  id         String    @id @default(uuid())
+  name       String?
+  employeeId Int?
+  weekId     String?
+  week       Week?     @relation(fields: [weekId], references: [id])
+  employee   Employee? @relation(fields: [employeeId], references: [id])
 
   @@map("day")
 }
 
 model Week {
-  id      String @id @default(cuid())
+  id      String @id @default(uuid())
   week    Int    @unique
-  lunch   Lunch  @relation(fields: [lunchId], references: [id])
   lunchId String
+  lunch   Lunch  @relation(fields: [lunchId], references: [id])
   day     Day[]
 
   @@map("week")

@@ -11,10 +11,12 @@ const Home: NextPage = () => {
     LunchList,
   } = useLunchContext()
 
+
+
+
   return <>
     <Layout>
       <h1>Lunsjkalender</h1>
-      <h1>{JSON.stringify(LunchList)}</h1>
     </Layout>
   </>
 }
