@@ -1,7 +1,9 @@
 import type { NextPage } from 'next'
 import Layout from '../components/Layout'
-import Weeks from '../components/weeks'
+import Weeks from '../components/Weeks'
+
 import { useLunchContext } from '../context/LunchContext'
+
 
 
 
