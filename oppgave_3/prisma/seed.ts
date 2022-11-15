@@ -1,10 +1,11 @@
+import { Employee, Week, Welcome, Year } from './../types/index'
 import { employees } from './../data/employees'
 import { PrismaClient } from '@prisma/client'
-import weeksData from '../data/lunch.json'
+import lunchList from '../data/lunch.json'
 
 const prisma = new PrismaClient()
 
-const lunchData = weeksData.year
+const lunchData: any = lunchList.year //TODO MÅ FINNE EN MÅTE Å TYPE DETTE, FÅR IKKE DET TIL ATM
 
 const createData = async () => {
   for (const weekNumber in lunchData) {
@@ -21,12 +22,11 @@ const createData = async () => {
       },
     })
 
-    const weekDays = lunchData[weekNumber].week
+    const weekDays: Week = lunchData[weekNumber].week
     for (const day in weekDays) {
       const weekNum = weekNumber
-      const thisDay = day
-      const employee = lunchData[weekNumber].week[day]
-      console.log(weekNum, thisDay, employee)
+      const employee: Employee = lunchData[weekNumber].week[day]
+      console.log(weekNum, day, employee)
 
       if (employee) {
         const checkIfEmployeeExist = await prisma.employee.findUnique({
@@ -47,7 +47,7 @@ const createData = async () => {
       }
       const createDay = await prisma.day.create({
         data: {
-          name: thisDay,
+          name: day,
           employeeId: employee?.id,
           weekId: createWeek.id,
         },

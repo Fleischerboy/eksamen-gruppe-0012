@@ -10,10 +10,10 @@ export type Week = {
   Fredag: Day | null
 }
 
-export interface Year {
+export type Year = {
   week: Week[]
 }
-export interface Day {
+export type Day = {
   employee: Employee
 }
 
