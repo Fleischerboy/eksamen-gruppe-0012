@@ -6,5 +6,5 @@ export const getAllWeeks = async () => {
 
   if (weeks.status == false) return { status: false, error: weeks.error }
 
-  return { status: true, data: weeks.data }
+  return weeks
 }
