@@ -1,8 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import * as weekController from '../../../features/weeks/weeks.controller'
+import { Result } from '../../../types/index'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>
+  res: NextApiResponse<Result>
 ) {
-  return res.status(200).json({ success: true, data: [] })
+  if (req.method?.toLowerCase() == 'get') {
+    await weekController.getAllWeeks(req, res)
+  } else res.status(405).end()
 }
