@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Layout from '../components/Layout'
+import Weeks from '../components/weeks'
 import { useLunchContext } from '../context/LunchContext'
 
 
@@ -17,6 +18,7 @@ const Home: NextPage = () => {
   return <>
     <Layout>
       <h1>Lunsjkalender</h1>
+      <Weeks />
     </Layout>
   </>
 }
