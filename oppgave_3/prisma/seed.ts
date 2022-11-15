@@ -4,7 +4,6 @@ import lunchList from '../data/lunch.json'
 const prisma = new PrismaClient()
 
 const lunchData: any = lunchList.year //TODO MÅ FINNE EN MÅTE Å TYPE DETTE, FÅR IKKE DET TIL ATM
-
 const createData = async () => {
   for (const weekNumber in lunchData) {
     const lunchId = await prisma.lunch.create({

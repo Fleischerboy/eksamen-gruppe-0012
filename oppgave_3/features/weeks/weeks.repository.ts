@@ -10,6 +10,7 @@ export const findMany = async () => {
     })
     return { weeks: weeks }
   } catch (error) {
+    console.log(error)
     return { status: false, error: 'No weeks found' }
   }
 }
