@@ -8,3 +8,11 @@ export const getAllWeeks = async () => {
 
   return weeks
 }
+
+export const getWeekById = async (id: any) => {
+  const week = await weeksRepo.getWeekById(id)
+
+  if (week.status == false) return { status: false, error: week.error }
+
+  return week
+}

@@ -13,3 +13,16 @@ export const getAllWeeks = async (
 
   res.status(200).json({ status: true, data: weeks })
 }
+
+export const getWeekById = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Result>,
+  id: any
+) => {
+  const week = await weekService.getWeekById(id)
+
+  if (week.error)
+    return res.status(500).json({ status: false, error: week.error })
+
+  res.status(200).json({ status: true, data: week })
+}
