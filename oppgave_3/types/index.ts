@@ -1,5 +1,3 @@
-import { type } from 'os'
-
 export type Data = { status: true; data: Record<string, unknown> }
 export type Error = { status: false; error: string }
 export type Result = Data | Error
@@ -11,7 +9,6 @@ export type Week = {
   Torsdag: Day | null
   Fredag: Day | null
 }
-
 
 export type Year = {
   week: Week[]
@@ -25,4 +22,3 @@ export type Employee = {
   name: string
   rules: string
 }
-
