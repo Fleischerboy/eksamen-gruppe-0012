@@ -6,15 +6,15 @@ Table employee {
   id Int [pk, increment]
   name String [not null]
   rules String [not null]
-  day day [not null]
+  days day [not null]
 }
 
 Table day {
   id String [pk]
-  name String
+  name String [not null]
   employeeId Int
-  weekId String
-  week week
+  weekId String [not null]
+  week week [not null]
   employee employee
 }
 
