@@ -19,7 +19,7 @@ export const getWeekById = async (id: any) => {
   try {
     const week = await prisma.week.findUnique({
       where: {
-        id: id.parseInt(),
+        week: parseInt(id),
       },
       include: {
         day: true,
