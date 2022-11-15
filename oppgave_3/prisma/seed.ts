@@ -1,8 +1,6 @@
-import { Employee, Week, Welcome, Year } from './../types/index'
-import { employees } from './../data/employees'
+import { Employee, Week } from './../types/index'
 import { PrismaClient } from '@prisma/client'
 import lunchList from '../data/lunch.json'
-
 const prisma = new PrismaClient()
 
 const lunchData: any = lunchList.year //TODO MÅ FINNE EN MÅTE Å TYPE DETTE, FÅR IKKE DET TIL ATM
