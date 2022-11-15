@@ -25,9 +25,10 @@ Applikasjon for lunsj-system
 #### Henter alle ansatte
 
 ```
-/api/employees - tilgjengelig verb/http-methode: [GET]
+/api/employees - tilgjengelig verb/http-methode: [GET, POST]
     - pages/employee/index.tsx
     - endepunkt skal bli kalt/brukt på url/siden: BASE_URL/employees
+
 ```
 
 #### Henter en ansatt, oppdatere en anstatt og slette en ansatt.
@@ -36,12 +37,4 @@ Applikasjon for lunsj-system
 /api/employees/:id - tilgjengelig verb/http-methode: [GET,DELETE PUT]
     - pages/employee/[id]/index.tsx
     - endepunkt skal bli kalt/brukt på url/siden: BASE_URL/employees/:id
-```
-
-#### lage en ny ansatt
-
-```
-/api/employees/create - tilgjengelig verb/http-methode: [POST]
-    - pages/employees/new
-    - endepunkt skal bli kalt/brukt på url/siden: BASE_URL/employees/new
 ```
