@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Data, Error, Result } from '../../types/index'
 import * as weekService from './weeks.service'
+import lunchData from '../../data/lunch.json'
 
 export const getAllWeeks = async (
   req: NextApiRequest,
@@ -11,7 +12,7 @@ export const getAllWeeks = async (
   if (weeks.error)
     return res.status(500).json({ status: false, error: weeks.error })
 
-  res.status(200).json({ status: true, data: weeks })
+  res.status(200).json({ status: true, data: lunchData.year })
 }
 
 export const getWeekById = async (

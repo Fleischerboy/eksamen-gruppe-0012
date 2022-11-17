@@ -4,20 +4,20 @@ import useLunch from '../hooks/useLunch'
 import data from '../data/lunch.json'
 
 export type LunchContextTypes = {
-  LunchList: any
-  setLunchList: any
+  LunchData: any
+  setLunchData: any
 }
 
 
 const LunchContext = createContext<LunchContextTypes | undefined>(undefined)
 
 export const LunchProvider = ({ children }: { children: React.ReactNode }) => {
-  const { LunchList, setLunchList } = useLunch(data)
+  const { LunchData, setLunchData } = useLunch(null)
 
   return (
     <LunchContext.Provider value={{
-      LunchList,
-      setLunchList
+      LunchData,
+      setLunchData
     }}>
       {children}
     </LunchContext.Provider>
