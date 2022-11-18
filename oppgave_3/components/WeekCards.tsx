@@ -5,9 +5,10 @@ import { Day, Week } from "../types"
 
 type weekCardsProp = {
     weekList: Week[]
+    handleEmployeeClick: (employeeId: number) => void
 }
 
-const WeekCards = ({ weekList }: weekCardsProp) => {
+const WeekCards = ({ weekList, handleEmployeeClick }: weekCardsProp) => {
     // fetch weeks med api hooket
 
     const [show, setShow] = useState(true)
@@ -34,7 +35,7 @@ const WeekCards = ({ weekList }: weekCardsProp) => {
                                             {day.name}
                                         </span>
                                         <span>
-                                            {day.employee != null ? day.employee.name : <p className="fri">Fri</p>}
+                                            {day.employee != null ? <button onClick={() => handleEmployeeClick(day.employee.id)} type="button">{day.employee.name}</button> : <p className="fri">Fri</p>}
                                         </span>
                                     </li>
                                 ))}

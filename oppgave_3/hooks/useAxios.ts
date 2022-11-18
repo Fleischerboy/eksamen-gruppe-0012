@@ -19,6 +19,8 @@ export const useAxios = <T>(
     return () => {
       effectRan.current = true
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const request = () => {

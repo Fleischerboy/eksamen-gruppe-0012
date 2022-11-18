@@ -22,11 +22,15 @@ const Home: NextPage = () => {
     router.push(`weeks/${weekNumber}`)
   }
 
+  const handleEmployeeClick = (employeeId: number) => {
+    router.push(`employees/${employeeId}`)
+  }
+
   return <>
     <Layout>
       <h1>Lunsjkalender</h1>
       <SmallWeekCards weekList={LunchData} handleWeekClick={handleWeekClick} />
-      <WeekCards weekList={LunchData} />
+      <WeekCards weekList={LunchData} handleEmployeeClick={handleEmployeeClick} />
     </Layout>
   </>
 

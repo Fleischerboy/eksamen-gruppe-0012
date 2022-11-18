@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import * as employeeService from '../employees/employees.service'
 import { Result } from '../../types'
-import { definePropertyDynamically } from '../../util/help'
 
 export const getEmployeeAndLunchDaysById = async (
   req: NextApiRequest,
