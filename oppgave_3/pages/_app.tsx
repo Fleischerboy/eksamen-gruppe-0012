@@ -6,7 +6,7 @@ import { LunchProvider } from "../context/LunchContext";
 function MyApp({ Component, pageProps }: AppProps) {
   return <>
     <LunchProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </LunchProvider>
   </>
 

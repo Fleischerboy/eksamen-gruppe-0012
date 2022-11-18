@@ -12,7 +12,7 @@ export const getAllWeeks = async (
   if (weeks.error)
     return res.status(500).json({ status: false, error: weeks.error })
 
-  res.status(200).json({ status: true, data: lunchData.year })
+  res.status(200).json({ status: true, data: weeks })
 }
 
 export const getWeekById = async (

@@ -4,10 +4,17 @@ import { Data, Error, Result } from '../../types/index'
 export const findMany = async () => {
   try {
     const weeks = await prisma.week.findMany({
-      include: {
+      select: {
+        week: true,
         day: {
-          include: {
-            employee: true,
+          select: {
+            name: true,
+            employee: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
           },
         },
       },

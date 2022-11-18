@@ -1,4 +1,4 @@
-//https://github.com/joeythelantern/DataHook/blob/main/src/useAxios.ts
+// useAxios hook tatt fra denne linken: https://github.com/joeythelantern/DataHook/blob/main/src/useAxios.ts
 import axios, { AxiosRequestConfig } from 'axios'
 import { useEffect, useRef, useState } from 'react'
 
@@ -27,6 +27,7 @@ export const useAxios = <T>(
 
   const sendRequest = () => {
     setLoading(true)
+
     axios(config)
       .then((response) => {
         setError('')
