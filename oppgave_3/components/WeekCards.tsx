@@ -3,9 +3,11 @@ import { useLunchContext } from "../context/LunchContext"
 import employee from "../pages/employees/[id]"
 import { Day, Week } from "../types"
 
+type weekCardsProp = {
+    weekList: Week[]
+}
 
-
-const WeekCards = ({ weekList }: any) => {
+const WeekCards = ({ weekList }: weekCardsProp) => {
     // fetch weeks med api hooket
 
     const [show, setShow] = useState(true)
@@ -19,14 +21,14 @@ const WeekCards = ({ weekList }: any) => {
 
     return (
         <>
-            {console.log(weekList)}
+            {console.table(weekList)}
             {weekList?.length > 0 ? (
                 <ul className="week-list">
-                    {weekList.map((item: any, index: number) => (
+                    {weekList.map((week, index: number) => (
                         <li key={index} className="week-list-item">
-                            <h1>Uke {item.week}</h1>
+                            <h1>Uke {week.id}</h1>
                             <ul className="day-list" hidden={show} >
-                                {item.day.map((day: any, index: number) => (
+                                {week.day.map((day: any, index: number) => (
                                     <li key={index} className="day-list-item" >
                                         <span>
                                             {day.name}
@@ -39,7 +41,7 @@ const WeekCards = ({ weekList }: any) => {
                             </ul>
                             <button
                                 type="button"
-                                onClick={() => handleClick(item.week)}
+                                onClick={() => handleClick(week.id)}
                             >
                                 Se dager
                             </button>

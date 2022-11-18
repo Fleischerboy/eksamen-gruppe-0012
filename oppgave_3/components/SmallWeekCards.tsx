@@ -6,7 +6,6 @@ const SmallWeekCards = ({ weekList }: any) => {
 
     return (
         <>
-            {console.log(weekList)}
             {weekList?.length > 0 ? (<>
                 <ul className="small-week-cards-list">
                     {weekList.map((item: any, index: number) => (

@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from 'react'
+import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 import { createContext } from 'react'
 import { getWeeks } from '../api/weeks'
 import { useAxios } from '../hooks/useAxios'
-
 import useLunch from '../hooks/useLunch'
+import { Result, Week } from '../types'
 
 export type LunchContextTypes = {
-  LunchData: any
-  setLunchData: any
+  LunchData: Week[] | undefined
+  setLunchData: Dispatch<SetStateAction<Week[] | undefined>>
 }
 
 
@@ -20,13 +20,13 @@ export const LunchProvider = ({ children }: { children: React.ReactNode }) => {
   const {
     LunchData,
     setLunchData,
-  } = useLunch(null)
+  } = useLunch()
   const [loading, data, error, request] = useAxios<any>(getWeeks({}))
 
 
   useEffect(() => {
     if (data) {
-      setLunchData(data.data)
+      setLunchData(data.data.weeks)
     }
   }, [data, request, setLunchData])
 

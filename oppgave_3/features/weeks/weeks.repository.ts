@@ -13,6 +13,7 @@ export const findMany = async () => {
               select: {
                 id: true,
                 name: true,
+                rules: true,
               },
             },
           },

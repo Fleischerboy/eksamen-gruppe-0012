@@ -20,8 +20,8 @@ const Home: NextPage = () => {
   return <>
     <Layout>
       <h1>Lunsjkalender</h1>
-      <SmallWeekCards weekList={LunchData.weeks} />
-      <WeekCards weekList={LunchData.weeks} />
+      <SmallWeekCards weekList={LunchData} />
+      <WeekCards weekList={LunchData} />
     </Layout>
   </>
 
