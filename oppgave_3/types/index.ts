@@ -19,5 +19,5 @@ export type Day = {
 export type Employee = {
   id: number
   name: string
-  rules: string
+  rules?: string
 }

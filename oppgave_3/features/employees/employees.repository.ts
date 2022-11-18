@@ -1,3 +1,4 @@
+import { employees } from './../../data/employees'
 import lunchList from '../../data/lunch.json'
 import db from '../../lib/db'
 
@@ -8,7 +9,16 @@ export const findUnique = async (employeeId: number) => {
         id: employeeId,
       },
       include: {
-        days: true,
+        days: {
+          select: {
+            name: true,
+            week: {
+              select: {
+                week: true,
+              },
+            },
+          },
+        },
       },
     })
     return { status: true, data: employee }
