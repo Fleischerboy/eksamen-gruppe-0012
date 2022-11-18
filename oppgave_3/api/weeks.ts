@@ -10,3 +10,11 @@ export const getWeeks = (options: any) => {
     ...options,
   }
 }
+
+export const getWeek = (weekId: string | undefined, options: any) => {
+  return {
+    method: 'GET',
+    url: `${WEEKS_URL}/${weekId}`,
+    ...options,
+  }
+}

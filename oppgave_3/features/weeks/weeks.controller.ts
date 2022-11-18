@@ -17,13 +17,32 @@ export const getAllWeeks = async (
 
 export const getWeekById = async (
   req: NextApiRequest,
-  res: NextApiResponse<Result>,
-  id: any
+  res: NextApiResponse<Result>
 ) => {
+  const id =
+    req.query.week instanceof Array
+      ? req.query.week.find((i) => i.includes('week'))
+      : req.query.week
+
+  if (!id)
+    return res.status(400).json({ status: false, error: 'missing employee id' })
+
   const week = await weekService.getWeekById(id)
 
-  if (week.error)
-    return res.status(500).json({ status: false, error: week.error })
+  if (!week?.status) {
+    switch (week?.type) {
+      case 'week.NotExist': {
+        return res.status(404).json({
+          status: false,
+          error: week.error as string,
+        })
+      }
+      default:
+        return res
+          .status(500)
+          .json({ status: false, error: week.error as string })
+    }
+  }
 
-  res.status(200).json({ status: true, data: week })
+  return res.status(200).json({ status: true, data: week.data })
 }

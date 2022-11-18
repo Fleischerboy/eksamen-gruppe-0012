@@ -1,18 +1,22 @@
-const SmallWeekCards = ({ weekList }: any) => {
+import { Week } from "../types"
 
-    const handleClick = (weekNum: number) => {
-        console.log(weekNum)
-    }
+type SmallWeekCardsProps = {
+    weekList: Week[]
+    handleWeekClick: (weekNumber: number) => void
 
+}
+
+const SmallWeekCards = ({ weekList, handleWeekClick }: SmallWeekCardsProps) => {
     return (
         <>
+            {/*console.table(weekList)*/}
             {weekList?.length > 0 ? (<>
                 <ul className="small-week-cards-list">
-                    {weekList.map((item: any, index: number) => (
+                    {weekList.map((item, index: number) => (
                         <li key={index} className="small-week-cards-item">
                             <button
                                 type="button"
-                                onClick={() => handleClick(item.week)}
+                                onClick={() => handleWeekClick(item.week)}
                             >
                                 {item.week}
                             </button>

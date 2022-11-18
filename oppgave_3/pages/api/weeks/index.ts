@@ -8,5 +8,9 @@ export default async function handler(
 ) {
   if (req.method?.toLowerCase() == 'get') {
     await weekController.getAllWeeks(req, res)
-  } else res.status(405).end()
+  } else
+    res.status(405).json({
+      status: false,
+      error: 'Method not allowed',
+    })
 }

@@ -7,7 +7,7 @@ export type Year = {
 }
 
 export type Week = {
-  id: number
+  week: number
   day: Day[]
 }
 

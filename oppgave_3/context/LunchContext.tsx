@@ -20,6 +20,7 @@ export const LunchProvider = ({ children }: { children: React.ReactNode }) => {
   const {
     LunchData,
     setLunchData,
+
   } = useLunch()
   const [loading, data, error, request] = useAxios<any>(getWeeks({}))
 
@@ -42,6 +43,7 @@ export const LunchProvider = ({ children }: { children: React.ReactNode }) => {
     <LunchContext.Provider value={{
       LunchData,
       setLunchData,
+
     }}>
       {children}
     </LunchContext.Provider>

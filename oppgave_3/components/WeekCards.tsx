@@ -24,11 +24,11 @@ const WeekCards = ({ weekList }: weekCardsProp) => {
             {console.table(weekList)}
             {weekList?.length > 0 ? (
                 <ul className="week-list">
-                    {weekList.map((week, index: number) => (
+                    {weekList.map((item, index: number) => (
                         <li key={index} className="week-list-item">
-                            <h1>Uke {week.id}</h1>
+                            <h1>Uke {item.week}</h1>
                             <ul className="day-list" hidden={show} >
-                                {week.day.map((day: any, index: number) => (
+                                {item.day.map((day: any, index: number) => (
                                     <li key={index} className="day-list-item" >
                                         <span>
                                             {day.name}
@@ -41,7 +41,7 @@ const WeekCards = ({ weekList }: weekCardsProp) => {
                             </ul>
                             <button
                                 type="button"
-                                onClick={() => handleClick(week.id)}
+                                onClick={() => handleClick(item.week)}
                             >
                                 Se dager
                             </button>

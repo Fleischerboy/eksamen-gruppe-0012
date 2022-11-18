@@ -1,5 +1,4 @@
 import prisma from '../../lib/db'
-import { Data, Error, Result } from '../../types/index'
 
 export const findMany = async () => {
   try {
@@ -33,16 +32,24 @@ export const getWeekById = async (id: any) => {
       where: {
         week: parseInt(id),
       },
-      include: {
+      select: {
+        week: true,
         day: {
-          include: {
-            employee: true,
+          select: {
+            name: true,
+            employee: {
+              select: {
+                id: true,
+                name: true,
+                rules: true,
+              },
+            },
           },
         },
       },
     })
-    return { week: week }
+    return { status: true, data: week }
   } catch (error) {
-    return { status: false, error: 'week not found' }
+    return { status: false, error: 'Failed finding week' }
   }
 }

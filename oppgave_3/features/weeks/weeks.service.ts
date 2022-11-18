@@ -9,10 +9,19 @@ export const getAllWeeks = async () => {
   return weeks
 }
 
-export const getWeekById = async (id: any) => {
+export const getWeekById = async (id: string) => {
   const week = await weeksRepo.getWeekById(id)
 
-  if (week.status == false) return { status: false, error: week.error }
+  if (!week.status) {
+    return { status: false, error: week.error }
+  }
 
-  return week
+  if (!week.data)
+    return {
+      status: false,
+      type: 'week.NotExist',
+      error: `week with ${id} does not exist`,
+    }
+
+  return { status: true, data: week.data }
 }
