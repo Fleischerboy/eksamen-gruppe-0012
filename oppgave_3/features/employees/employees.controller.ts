@@ -31,5 +31,8 @@ export const getEmployeeAndLunchDaysById = async (
         })
     }
   }
-  return res.status(200).json({ status: true, data: employee.data })
+  const employeeData = {
+    employee: employee.data,
+  }
+  return res.status(200).json({ status: true, data: employeeData })
 }

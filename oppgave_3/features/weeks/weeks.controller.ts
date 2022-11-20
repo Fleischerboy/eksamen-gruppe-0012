@@ -12,7 +12,10 @@ export const getAllWeeks = async (
   if (weeks.error)
     return res.status(500).json({ status: false, error: weeks.error })
 
-  res.status(200).json({ status: true, data: weeks })
+  const weeksData = {
+    weeks: weeks.data,
+  }
+  res.status(200).json({ status: true, data: weeksData })
 }
 
 export const getWeekById = async (
@@ -44,5 +47,9 @@ export const getWeekById = async (
     }
   }
 
-  return res.status(200).json({ status: true, data: week.data })
+  const weekData = {
+    week: week.data,
+  }
+
+  return res.status(200).json({ status: true, data: weekData })
 }

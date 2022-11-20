@@ -4,9 +4,9 @@ import * as weeksRepo from './weeks.repository'
 export const getAllWeeks = async () => {
   const weeks = await weeksRepo.findMany()
 
-  if (weeks.status == false) return { status: false, error: weeks.error }
+  if (!weeks.status) return { status: false, error: weeks.error }
 
-  return weeks
+  return { status: true, data: weeks.data }
 }
 
 export const getWeekById = async (id: string) => {
