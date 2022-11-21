@@ -31,7 +31,7 @@ const WeekCards = ({ weekList, handleEmployeeClick }: weekCardsProp) => {
                         <li key={index} className="week-list-item">
                             <h1>Uke {item.week}</h1>
                             {showLunchDays.includes(item.week) && (
-                                <WeekCard lunchDays={item.day} handleEmployeeClick={handleEmployeeClick} />
+                                <WeekCard lunchDays={item.days} handleEmployeeClick={handleEmployeeClick} />
                             )}
                             <button
                                 type="button"

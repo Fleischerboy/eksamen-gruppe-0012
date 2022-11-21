@@ -63,6 +63,7 @@ hr {
       span {
         display: block;
         padding: 1rem;
+        align-self: flex-start;
 
         &:nth-child(1) {
           min-width: 100px;
@@ -70,6 +71,7 @@ hr {
 
         &:nth-child(2) {
           padding-left: 5rem;
+          min-width: 200px;
         }
       }
 

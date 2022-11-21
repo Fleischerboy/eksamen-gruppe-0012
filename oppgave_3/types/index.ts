@@ -3,17 +3,17 @@ export type Error = { status: false; error: string }
 export type Result = Data | Error
 
 export type Year = {
-  week: Week[]
+  weeks: Week[]
 }
 
 export type Week = {
   week: number
-  day: Day[]
+  days: Day[]
 }
 
 export type Day = {
   name: string
-  lunchFood: string
+  lunch: string
   employee: Employee | null
 }
 
