@@ -33,7 +33,7 @@ const Home: NextPage = () => {
     router.push(`weeks/${weekNumber}`)
   }
 
-  const handleEmployeeClick = (employeeId: number) => {
+  const handleEmployeeClick = (employeeId?: number) => {
     router.push(`employees/${employeeId}`)
   }
 

@@ -6,7 +6,7 @@ import WeekCard from "./WeekCard"
 type weekCardsProp = {
     weekList: Week[]
     showLunchDays: number[]
-    handleEmployeeClick: (employeeId: number) => void
+    handleEmployeeClick: (employeeId?: number) => void
     handleLunchDaysToggle: (weekNumber: number) => void
 }
 

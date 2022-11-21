@@ -3,7 +3,7 @@ import { Day } from "../types"
 
 type WeekCardProps = {
     lunchDays: Day[]
-    handleEmployeeClick: (employeeId: number) => void
+    handleEmployeeClick: (employeeId?: number) => void
 
 
 }
@@ -20,7 +20,7 @@ const WeekCard = ({ lunchDays, handleEmployeeClick }: WeekCardProps) => {
                             {day.name}
                         </span>
                         <span>
-                            {day.employee != null ? <button onClick={() => handleEmployeeClick(day.employee.id)} type="button">{day.employee.name}</button> : <p className="fri">Fri</p>}
+                            {day.employee != null ? <button onClick={() => handleEmployeeClick(day?.employee?.id)} type="button">{day.employee.name}</button> : <p className="fri">Fri</p>}
                         </span>
                         <span>
                             {day.lunch}
