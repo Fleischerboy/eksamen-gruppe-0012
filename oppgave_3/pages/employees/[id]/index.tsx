@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { getEmployee } from "../../../api/employee";
-import { useLunchContext } from "../../../context/LunchContext";
 import { useAxios } from "../../../hooks/useAxios";
+import { Result } from "../../../types";
 
 
 const Employee = () => {
@@ -10,7 +10,7 @@ const Employee = () => {
     const id = router.query.id instanceof Array ?
         router.query.id.find((x) => x.includes('id'))
         : router.query.id
-    const [loading, data, error, request] = useAxios<any>(getEmployee(id, {}), false)
+    const [loading, data, error, request] = useAxios<Result>(getEmployee(id, {}), false)
 
 
     useEffect(() => {

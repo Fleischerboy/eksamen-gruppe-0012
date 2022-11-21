@@ -1,7 +1,6 @@
-import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react'
+import React from 'react'
 import { createContext } from 'react'
 import useLunch from '../hooks/useLunch'
-import { Result, Week } from '../types'
 
 export type LunchContextTypes = {
   showLunchDays: number[]

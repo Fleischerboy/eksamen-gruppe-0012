@@ -1,7 +1,8 @@
 import { useRouter } from "next/router";
 import { useAxios } from "../../../hooks/useAxios";
 import { getWeek } from '../../../api/weeks'
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Result } from "../../../types";
 
 
 const Week = () => {
@@ -10,7 +11,7 @@ const Week = () => {
         router.query.id.find((x) => x.includes('id'))
         : router.query.id
 
-    const [loading, data, error, request] = useAxios<any>(getWeek(id, {}), false);
+    const [loading, data, error, request] = useAxios<Result>(getWeek(id, {}), false);
 
     useEffect(() => {
         if (router.isReady) {
