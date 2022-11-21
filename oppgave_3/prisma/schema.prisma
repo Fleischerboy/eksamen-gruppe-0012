@@ -22,6 +22,7 @@ model Employee {
 
 model Day {
   id         String    @id @default(uuid())
+  lunch      String
   name       String
   employeeId Int?
   weekId     String
@@ -32,18 +33,18 @@ model Day {
 }
 
 model Week {
-  id      String @id @default(uuid())
-  week    Int    @unique
-  lunchId String
-  lunch   Lunch  @relation(fields: [lunchId], references: [id])
-  day     Day[]
+  id     String @id @default(uuid())
+  week   Int    @unique
+  yearId String
+  year   Year   @relation(fields: [yearId], references: [id])
+  days   Day[]
 
   @@map("week")
 }
 
-model Lunch {
-  id   String @id @default(cuid())
-  week Week[]
+model Year {
+  id    String @id @default(cuid())
+  weeks Week[]
 
-  @@map("lunch")
+  @@map("year")
 }

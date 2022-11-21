@@ -1,4 +1,4 @@
-// useAxios hook tatt fra denne linken: https://github.com/joeythelantern/DataHook/blob/main/src/useAxios.ts
+// useAxios hook tatt fra denne linken URL: https://github.com/joeythelantern/DataHook/blob/main/src/useAxios.ts
 import axios, { AxiosRequestConfig } from 'axios'
 import { useEffect, useRef, useState } from 'react'
 

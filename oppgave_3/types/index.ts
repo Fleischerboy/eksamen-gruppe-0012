@@ -13,11 +13,12 @@ export type Week = {
 
 export type Day = {
   name: string
+  lunchFood: string
   employee: Employee | null
 }
 
 export type Employee = {
   id: number
   name: string
-  rules?: string
+  rules: string
 }

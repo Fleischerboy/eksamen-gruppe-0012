@@ -22,6 +22,8 @@ export const LunchProvider = ({ children }: { children: React.ReactNode }) => {
     setLunchData,
 
   } = useLunch()
+
+
   const [loading, data, error, request] = useAxios<any>(getWeeks({}))
 
 
@@ -33,11 +35,12 @@ export const LunchProvider = ({ children }: { children: React.ReactNode }) => {
 
   if (loading) return <main><h1>Henter Lunch data...</h1></main>
 
-  if (!data) return <main><h1>Lunch data var null</h1></main>
+  if (!data) return <main><h1>Lunch data var null eller empty</h1></main>
 
   if (error) return (
     <main><h1>Noe gikk galt med å hente lunch data...</h1> <h3>Error: {JSON.stringify(error)}</h3></main>
   )
+
 
   return (
     <LunchContext.Provider value={{

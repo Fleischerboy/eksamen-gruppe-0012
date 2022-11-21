@@ -11,6 +11,7 @@ Table employee {
 
 Table day {
   id String [pk]
+  lunch String [not null]
   name String [not null]
   employeeId Int
   weekId String [not null]
@@ -21,18 +22,18 @@ Table day {
 Table week {
   id String [pk]
   week Int [unique, not null]
-  lunchId String [not null]
-  lunch lunch [not null]
-  day day [not null]
+  yearId String [not null]
+  year year [not null]
+  days day [not null]
 }
 
-Table lunch {
+Table year {
   id String [pk]
-  week week [not null]
+  weeks week [not null]
 }
 
 Ref: day.weekId > week.id
 
 Ref: day.employeeId > employee.id
 
-Ref: week.lunchId > lunch.id
+Ref: week.yearId > year.id

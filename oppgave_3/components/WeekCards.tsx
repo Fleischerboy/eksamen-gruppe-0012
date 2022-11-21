@@ -1,6 +1,4 @@
 import { useState } from "react"
-import { useLunchContext } from "../context/LunchContext"
-import employee from "../pages/employees/[id]"
 import { Day, Week } from "../types"
 import WeekCard from "./WeekCard"
 
@@ -10,7 +8,6 @@ type weekCardsProp = {
 }
 
 const WeekCards = ({ weekList, handleEmployeeClick }: weekCardsProp) => {
-    // fetch weeks med api hooket
     const [showLunchDays, setShowLunchDays] = useState<number[]>([])
     const handleLunchDaysToggle = (weekNumber: number) => {
         const showState = showLunchDays.slice()

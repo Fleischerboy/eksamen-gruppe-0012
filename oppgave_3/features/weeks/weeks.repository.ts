@@ -5,9 +5,10 @@ export const findMany = async () => {
     const weeks = await prisma.week.findMany({
       select: {
         week: true,
-        day: {
+        days: {
           select: {
             name: true,
+            lunch: true,
             employee: {
               select: {
                 id: true,
@@ -34,7 +35,7 @@ export const getWeekById = async (id: any) => {
       },
       select: {
         week: true,
-        day: {
+        days: {
           select: {
             name: true,
             employee: {
