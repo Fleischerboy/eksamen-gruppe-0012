@@ -1,4 +1,5 @@
-import { Day, Week } from "../types"
+import { useLunchContext } from "../context/LunchContext"
+import { Day } from "../types"
 
 type WeekCardProps = {
     lunchDays: Day[]
@@ -6,6 +7,7 @@ type WeekCardProps = {
 
 
 }
+
 
 
 const WeekCard = ({ lunchDays, handleEmployeeClick }: WeekCardProps) => {

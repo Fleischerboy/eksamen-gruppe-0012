@@ -1,13 +1,13 @@
 import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react'
 import { createContext } from 'react'
-import { getWeeks } from '../api/weeks'
-import { useAxios } from '../hooks/useAxios'
 import useLunch from '../hooks/useLunch'
 import { Result, Week } from '../types'
 
 export type LunchContextTypes = {
-  LunchData: Week[] | undefined
+  LunchData?: Week[]
+  showLunchDays: number[]
   setLunchData: Dispatch<SetStateAction<Week[] | undefined>>
+  handleLunchDaysToggle: (weekNumber: number) => void
 }
 
 
@@ -19,33 +19,19 @@ export const LunchProvider = ({ children }: { children: React.ReactNode }) => {
 
   const {
     LunchData,
+    showLunchDays,
     setLunchData,
+    handleLunchDaysToggle
 
   } = useLunch()
-
-
-  const [loading, data, error, request] = useAxios<any>(getWeeks({}))
-
-
-  useEffect(() => {
-    if (data) {
-      setLunchData(data.data.weeks)
-    }
-  }, [data, request, setLunchData])
-
-  if (loading) return <main><h1>Henter Lunch data...</h1></main>
-
-  if (!data) return <main><h1>Lunch data var null eller empty</h1></main>
-
-  if (error) return (
-    <main><h1>Noe gikk galt med å hente lunch data...</h1> <h3>Error: {JSON.stringify(error)}</h3></main>
-  )
 
 
   return (
     <LunchContext.Provider value={{
       LunchData,
+      showLunchDays,
       setLunchData,
+      handleLunchDaysToggle,
 
     }}>
       {children}
