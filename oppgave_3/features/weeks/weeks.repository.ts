@@ -2,7 +2,7 @@ import prisma from '../../lib/db'
 
 export const findMany = async () => {
   try {
-    const weeks = await prisma.weegk.findMany({
+    const weeks = await prisma.week.findMany({
       select: {
         week: true,
         days: {
