@@ -30,7 +30,6 @@ const WeekCards = ({ weekList, showLunchDays, handleLunchDaysToggle, handleEmplo
                                 Se dager
                             </button>
                         </li>
-
                     ))}
                 </ul>
             ) : null}
