@@ -52,36 +52,68 @@ hr {
     }
   }
 
-  .day-list {
+  
+
+}
 
 
-    .day-list-item {
-      display: flex;
+.day-list {
+
+  .day-list-item {
+    display: flex;
 
 
-
-      span {
-        display: block;
-        padding: 1rem;
-        align-self: flex-start;
-
-        &:nth-child(1) {
-          min-width: 100px;
-        }
-
-        &:nth-child(2) {
-          padding-left: 5rem;
-          min-width: 200px;
-        }
+    span {
+      display: block;
+      padding: 1rem;
+      align-self: flex-start;
+    
+      &:nth-child(1) {
+        min-width: 100px;
       }
-
-      &:nth-of-type(2n) {
-        background-color: #c1c1c1;
+    
+      &:nth-child(2) {
+        padding-left: 5rem;
+        min-width: 200px;
       }
+    }
+
+    &:nth-of-type(2n) {
+      background-color: #c1c1c1;
+    }
+  }
+
+  button {
+    color: black;
+    border: none;
+    background: none;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.one-week-list {
+
+  .one-week-item {
+    display: flex;
+    font-weight: 700;
+    font-size: 2rem;
+
+    span {
+      display: block;
+      padding-right: 1rem;
+      align-self: flex-start;
+
     }
   }
 
 
-
-
 }
+
+
+
+
+
+
+
+

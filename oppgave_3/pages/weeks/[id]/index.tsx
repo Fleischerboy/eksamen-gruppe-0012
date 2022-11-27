@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import { useAxios } from "../../../hooks/useAxios";
 import { getWeek } from '../../../api/weeks'
 import { useEffect } from "react";
-import { Result } from "../../../types";
+import { Day, Result} from "../../../types";
+import Layout from "../../../components/Layout";
 
 
 const Week = () => {
@@ -18,7 +19,6 @@ const Week = () => {
             request()
 
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [router.isReady])
 
 
@@ -28,11 +28,34 @@ const Week = () => {
         <main><h1>Noe gikk galt...</h1> <h3>Error: {JSON.stringify(error)}</h3></main>
     )
 
-    return (<>
-        <h1>week: {id}</h1>
-        <h1>{JSON.stringify(data)}</h1>
-    </>
-    )
+    if(data) {
+
+        const weekdata: Day[] = data.data.week.days
+        
+        return (<>
+            <Layout>
+            <>
+            <h1>Uke: {id}</h1>
+            <ul className="one-week-list">
+            {weekdata.map((day: Day, index: number) => (
+                <li className="one-week-item" key={index}>
+                    <span>
+                    {day.name}
+                    </span>
+                    <span>
+                    {day.employee?.name}
+                    </span>
+                </li>
+            ))}    
+            </ul>
+            </>
+            </Layout>
+
+        </>
+        )
+    } 
+
+    return <main><h1>data var null</h1></main>
 }
 
 export default Week;

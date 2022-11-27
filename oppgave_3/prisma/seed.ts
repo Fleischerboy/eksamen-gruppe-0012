@@ -5,7 +5,6 @@ const prisma = new PrismaClient()
 const lunchFoodData = ['Taco', 'Pizza', 'Fisk', 'Pasta']
 const lunchData: any = lunchList.year //TODO MÅ FINNE EN MÅTE Å TYPE DETTE, FÅR IKKE DET TIL ATM
 const createData = async () => {
-  // må gjøres om til 3 løkker hvis vi skal ha flere år.
   const yearId = await prisma.year.create({
     data: {
       id: undefined,
@@ -35,7 +34,7 @@ const createData = async () => {
         })
 
         if (!checkIfEmployeeExist) {
-          const createEmployee = await prisma.employee.create({
+          await prisma.employee.create({
             data: {
               id: employee.id,
               name: employee.name,
@@ -44,7 +43,7 @@ const createData = async () => {
           })
         }
       }
-      const createDay = await prisma.day.create({
+      await prisma.day.create({
         data: {
           name: day,
           employeeId: employee?.id,
@@ -68,9 +67,10 @@ async function main() {
   console.log(`Seeding finished.`)
 }
 
-main()
+export const seedScript = main()
   .catch((e) => {
     console.error(e)
+
     process.exit(1)
   })
   .finally(async () => {
