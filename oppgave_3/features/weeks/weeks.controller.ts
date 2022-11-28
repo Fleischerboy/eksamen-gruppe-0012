@@ -1,3 +1,4 @@
+import { findMany } from './weeks.repository'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Data, Error, Result } from '../../types/index'
 import * as weekService from './weeks.service'
@@ -52,4 +53,39 @@ export const getWeekById = async (
   }
 
   return res.status(200).json({ status: true, data: weekData })
+}
+
+export const getSelectedWeeks = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Result>
+) => {
+  const start =
+    req.query.start instanceof Array
+      ? req.query.start.find((i) => i.includes('start'))
+      : req.query.start
+
+  const end =
+    req.query.end instanceof Array
+      ? req.query.end.find((i) => i.includes('end'))
+      : req.query.end
+
+  if (!start || !end) {
+    return res.status(400).json({ status: false, error: "missing week id's" })
+  }
+
+  const weekList = []
+
+  for (let index = parseInt(start); index <= parseInt(end); index++) {
+    weekList.push(index)
+  }
+
+  const weeks = await weekService.getSelectedWeeks(weekList)
+
+  if (weeks.error)
+    return res.status(500).json({ status: false, error: weeks.error })
+
+  const weeksData = {
+    weeks: weeks.data,
+  }
+  res.status(200).json({ status: true, data: weeksData })
 }
