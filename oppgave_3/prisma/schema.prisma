@@ -12,22 +12,24 @@ datasource db {
 }
 
 model Employee {
-  id    Int    @id @default(autoincrement())
-  name  String
-  rules String
-  days  Day[]
+  id       Int        @id @default(autoincrement())
+  name     String
+  rules    String
+  days     Day[]
+  overrides Override[]
 
   @@map("employee")
 }
 
 model Day {
-  id         String    @id @default(uuid())
+  id         String     @id @default(uuid())
   lunch      String
   name       String
   employeeId Int?
   weekId     String
-  week       Week      @relation(fields: [weekId], references: [id])
-  employee   Employee? @relation(fields: [employeeId], references: [id])
+  week       Week       @relation(fields: [weekId], references: [id])
+  employee   Employee?  @relation(fields: [employeeId], references: [id])
+  overrides  Override[]
 
   @@map("day")
 }
@@ -47,4 +49,16 @@ model Year {
   weeks Week[]
 
   @@map("year")
+}
+
+model Override {
+  id         String    @id @default(cuid())
+  createdAt  DateTime  @default(now())
+  weekId     Int
+  dayId      String
+  employeeId Int
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  day        Day       @relation(fields: [dayId], references: [id])
+
+  @@map("override")
 }

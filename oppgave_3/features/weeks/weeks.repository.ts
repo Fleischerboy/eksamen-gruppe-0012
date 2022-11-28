@@ -7,6 +7,7 @@ export const findMany = async () => {
         week: true,
         days: {
           select: {
+            id: true,
             name: true,
             lunch: true,
             employee: {
@@ -14,6 +15,20 @@ export const findMany = async () => {
                 id: true,
                 name: true,
                 rules: true,
+              },
+            },
+            overrides: {
+              orderBy: {
+                createdAt: 'desc',
+              },
+              take: 1,
+              select: {
+                employee: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
               },
             },
           },
@@ -27,7 +42,7 @@ export const findMany = async () => {
   }
 }
 
-export const getWeekById = async (id: any) => {
+export const getWeekById = async (id: string) => {
   try {
     const week = await prisma.week.findUnique({
       where: {
@@ -37,12 +52,28 @@ export const getWeekById = async (id: any) => {
         week: true,
         days: {
           select: {
+            id: true,
             name: true,
+            lunch: true,
             employee: {
               select: {
                 id: true,
                 name: true,
                 rules: true,
+              },
+            },
+            overrides: {
+              orderBy: {
+                createdAt: 'desc',
+              },
+              take: 1,
+              select: {
+                employee: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
               },
             },
           },
@@ -52,5 +83,23 @@ export const getWeekById = async (id: any) => {
     return { status: true, data: week }
   } catch (error) {
     return { status: false, error: 'Failed finding week' }
+  }
+}
+
+export const getWeekOverrides = async (weekNumber: number) => {
+  try {
+    const overrides = await prisma.override.findMany({
+      where: {
+        weekId: weekNumber,
+      },
+      select: {
+        weekId: true,
+        dayName: true,
+        employeName: true,
+      },
+    })
+    return { status: true, data: overrides }
+  } catch (error) {
+    return { status: false, error: 'Failed finding overrides' }
   }
 }

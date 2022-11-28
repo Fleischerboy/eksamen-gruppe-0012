@@ -15,10 +15,16 @@ export type Day = {
   name: string
   lunch: string
   employee: Employee | null
+  overrides: Employee[];
 }
 
 export type Employee = {
+  employee: Employee;
   id: number
   name: string
   rules: string
+}
+
+export type WeekDay = {
+  name: 'mandag' | 'trisdag' | 'onsdag' | 'torsdag' | 'fredag'
 }

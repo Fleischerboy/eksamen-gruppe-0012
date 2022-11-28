@@ -5,6 +5,6 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   await seedScript
-  return res.status(200).json({ success: true, data: `seed script executed` })
+  return res.status(200).json({ success: true, msg: `seed script executed` })
 
 }

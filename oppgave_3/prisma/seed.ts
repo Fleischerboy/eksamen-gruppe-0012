@@ -23,7 +23,7 @@ const createData = async () => {
       const weekNum = weekNumber
       const employee: Employee = lunchData[weekNumber].week[day]
       const lunchFood =
-        lunchFoodData[Math.floor(Math.random() * lunchFoodData.length)]
+      lunchFoodData[Math.floor(Math.random() * lunchFoodData.length)]
       console.log(weekNum, day, employee, lunchFood)
 
       if (employee) {
@@ -57,6 +57,7 @@ const createData = async () => {
 
 async function main() {
   console.log(`Start seeding ...`)
+  await prisma.override.deleteMany({})
   await prisma.day.deleteMany({})
   await prisma.employee.deleteMany({})
   await prisma.week.deleteMany({})
