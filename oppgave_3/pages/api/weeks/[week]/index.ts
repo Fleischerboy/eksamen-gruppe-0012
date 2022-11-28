@@ -6,13 +6,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Result>
 ) {
-  const id =
-    req.query.week instanceof Array
-      ? req.query.week.find((i) => i.includes('week'))
-      : req.query.week
+
   switch (req.method?.toLowerCase()) {
     case 'get':
-      await weekController.getWeekById(req, res, id)
+      await weekController.getWeekById(req, res)
       break
     default:
       return res.status(405).json({

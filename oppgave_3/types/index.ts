@@ -2,23 +2,29 @@ export type Data = { status: true; data: Record<string, unknown> }
 export type Error = { status: false; error: string }
 export type Result = Data | Error
 
-export type Week = {
-  Mandag: Day | null
-  Tirsdag: Day | null
-  Onsdag: Day | null
-  Torsdag: Day | null
-  Fredag: Day | null
+export type Year = {
+  weeks: Week[]
 }
 
-export type Year = {
-  week: Week[]
+export type Week = {
+  week: number
+  days: Day[]
 }
+
 export type Day = {
-  employee: Employee
+  name: string
+  lunch: string
+  employee: Employee | null
+  overrides: Employee[];
 }
 
 export type Employee = {
+  employee: Employee;
   id: number
   name: string
   rules: string
+}
+
+export type WeekDay = {
+  name: 'mandag' | 'trisdag' | 'onsdag' | 'torsdag' | 'fredag'
 }

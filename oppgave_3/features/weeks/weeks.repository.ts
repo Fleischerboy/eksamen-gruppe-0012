@@ -1,40 +1,105 @@
 import prisma from '../../lib/db'
-import { Data, Error, Result } from '../../types/index'
 
 export const findMany = async () => {
   try {
     const weeks = await prisma.week.findMany({
-      include: {
-        day: {
-          include: {
-            employee: true,
+      select: {
+        week: true,
+        days: {
+          select: {
+            id: true,
+            name: true,
+            lunch: true,
+            employee: {
+              select: {
+                id: true,
+                name: true,
+                rules: true,
+              },
+            },
+            overrides: {
+              orderBy: {
+                createdAt: 'desc',
+              },
+              take: 1,
+              select: {
+                employee: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+              },
+            },
           },
         },
       },
     })
-    return { weeks: weeks }
+    return { status: true, data: weeks }
   } catch (error) {
     console.log(error)
-    return { status: false, error: 'No weeks found' }
+    return { status: false, error: 'Failed finding weeks' }
   }
 }
 
-export const getWeekById = async (id: any) => {
+export const getWeekById = async (id: string) => {
   try {
     const week = await prisma.week.findUnique({
       where: {
         week: parseInt(id),
       },
-      include: {
-        day: {
-          include: {
-            employee: true,
+      select: {
+        week: true,
+        days: {
+          select: {
+            id: true,
+            name: true,
+            lunch: true,
+            employee: {
+              select: {
+                id: true,
+                name: true,
+                rules: true,
+              },
+            },
+            overrides: {
+              orderBy: {
+                createdAt: 'desc',
+              },
+              take: 1,
+              select: {
+                employee: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+              },
+            },
           },
         },
       },
     })
-    return { week: week }
+    return { status: true, data: week }
   } catch (error) {
-    return { status: false, error: 'week not found' }
+    return { status: false, error: 'Failed finding week' }
+  }
+}
+
+export const getWeekOverrides = async (weekNumber: number) => {
+  try {
+    const overrides = await prisma.override.findMany({
+      where: {
+        weekId: weekNumber,
+      },
+      select: {
+        weekId: true,
+        dayName: true,
+        employeName: true,
+      },
+    })
+    return { status: true, data: overrides }
+  } catch (error) {
+    return { status: false, error: 'Failed finding overrides' }
   }
 }

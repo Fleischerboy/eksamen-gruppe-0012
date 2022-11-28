@@ -2,20 +2,19 @@ import { Employee, Week } from './../types/index'
 import { PrismaClient } from '@prisma/client'
 import lunchList from '../data/lunch.json'
 const prisma = new PrismaClient()
-
+const lunchFoodData = ['Taco', 'Pizza', 'Fisk', 'Pasta']
 const lunchData: any = lunchList.year //TODO MÅ FINNE EN MÅTE Å TYPE DETTE, FÅR IKKE DET TIL ATM
 const createData = async () => {
+  const yearId = await prisma.year.create({
+    data: {
+      id: undefined,
+    },
+  })
   for (const weekNumber in lunchData) {
-    const lunchId = await prisma.lunch.create({
-      data: {
-        id: undefined,
-      },
-    })
-
     const createWeek = await prisma.week.create({
       data: {
         week: parseInt(weekNumber),
-        lunchId: lunchId.id,
+        yearId: yearId.id,
       },
     })
 
@@ -23,7 +22,9 @@ const createData = async () => {
     for (const day in weekDays) {
       const weekNum = weekNumber
       const employee: Employee = lunchData[weekNumber].week[day]
-      console.log(weekNum, day, employee)
+      const lunchFood =
+      lunchFoodData[Math.floor(Math.random() * lunchFoodData.length)]
+      console.log(weekNum, day, employee, lunchFood)
 
       if (employee) {
         const checkIfEmployeeExist = await prisma.employee.findUnique({
@@ -33,7 +34,7 @@ const createData = async () => {
         })
 
         if (!checkIfEmployeeExist) {
-          const createEmployee = await prisma.employee.create({
+          await prisma.employee.create({
             data: {
               id: employee.id,
               name: employee.name,
@@ -42,11 +43,12 @@ const createData = async () => {
           })
         }
       }
-      const createDay = await prisma.day.create({
+      await prisma.day.create({
         data: {
           name: day,
           employeeId: employee?.id,
           weekId: createWeek.id,
+          lunch: lunchFood,
         },
       })
     }
@@ -55,19 +57,21 @@ const createData = async () => {
 
 async function main() {
   console.log(`Start seeding ...`)
+  await prisma.override.deleteMany({})
   await prisma.day.deleteMany({})
   await prisma.employee.deleteMany({})
   await prisma.week.deleteMany({})
-  await prisma.lunch.deleteMany({})
+  await prisma.year.deleteMany({})
 
-  await createData()
+  createData()
 
   console.log(`Seeding finished.`)
 }
 
-main()
+export const seedScript = main()
   .catch((e) => {
     console.error(e)
+
     process.exit(1)
   })
   .finally(async () => {
