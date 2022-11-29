@@ -5,9 +5,12 @@ import { getWeek } from '../../../../api/weeks'
 import { useEffect } from 'react'
 import { Day, Result } from '../../../../types'
 import Layout from '../../../../components/Layout'
+import WeekCards from '../../../../components/WeekCards'
+import { useLunchContext } from '../../../../context/LunchContext'
 
 const SelectedWeeks = () => {
   const router = useRouter()
+  const { showLunchDays, handleLunchDaysToggle } = useLunchContext()
 
   const start =
     router.query.start instanceof Array
@@ -34,6 +37,10 @@ const SelectedWeeks = () => {
     }
   }, [router.isReady])
 
+  const handleEmployeeClick = (employeeId?: number) => {
+    router.push(`../../employees/${employeeId}`)
+  }
+
   if (loading)
     return (
       <main>
@@ -49,31 +56,15 @@ const SelectedWeeks = () => {
     )
 
   if (data) {
-    console.log(data.data.weeks)
     return (
       <>
         <Layout>
-          {/* <>
-            <h1>Uke: {id}</h1>
-            <ul className="one-week-list">
-              {weekdata.map((day: Day, index: number) => (
-                <li className="one-week-item" key={index}>
-                  <span>{day.name}</span>
-                  <span>
-                    {day.overrides.length > 0 ? (
-                      <>
-                        {day.overrides.map((ele) => (
-                          <span>{ele?.employee?.name}</span>
-                        ))}
-                      </>
-                    ) : (
-                      <span>{day.employee?.name}</span>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </> */}
+          <WeekCards
+            weekList={data.data.weeks}
+            handleEmployeeClick={handleEmployeeClick}
+            handleLunchDaysToggle={handleLunchDaysToggle}
+            showLunchDays={showLunchDays}
+          />
         </Layout>
       </>
     )
