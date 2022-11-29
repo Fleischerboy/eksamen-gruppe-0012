@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react"
-import { overrideEmployee } from "../api/day"
 import { employees } from "../data/employees"
-import { useAxios } from "../hooks/useAxios"
-import { Result } from "../types"
+import OverrideEmployeeForm from "./OverrideEmployeeForm"
+
 
 type modalProps = {
     open: Boolean
@@ -21,22 +19,7 @@ const Modal = ({ open, day, onClose, handleOverrideInput, handleRadioChange }: m
             <section onClick={(e) => {
                 e.stopPropagation()
             }} className="modalContainer">
-                <header className="modal-header">
-                    <h1>{day}: bytt lunsj ansvarlig</h1>
-                </header>
-                <ul className="modal-list">
-                    {employees.map((employee, index) => (
-                        <li className="modal-list-item" key={index}>
-                            <div className="input-container">
-                                <input onChange={() => handleRadioChange(employee.id)}
-                                    className="radio-input" type="radio" id={employee.id.toString()}
-                                    name="employee"
-                                    value={employee.id} />
-                                <label htmlFor={employee.id.toString()}>{employee.name}</label>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                <OverrideEmployeeForm handleRadioChange={handleRadioChange} day={day} />
                 <footer className="modal-footer">
                     <button onClick={onClose} className="primary-btn">close</button>
                     <input onClick={() => handleOverrideInput()} className="primary-btn" type="submit" value="Submit" />

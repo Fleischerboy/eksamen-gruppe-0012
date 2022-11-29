@@ -53,8 +53,13 @@ const Week = () => {
         dayId: dayId,
         employeeId: editEmployee
       }
-    }))
+    })).then((res) => {
+      console.log(res)
+    }).catch((error) => {
+      console.log(error)
+    })
     request();
+    onClose()
   }
 
 
