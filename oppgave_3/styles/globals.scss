@@ -150,3 +150,7 @@ input {
   -webkit-appearance: none;
   border-radius: 0;
 }
+
+input[type="radio"] {
+  -webkit-appearance: radio;
+}

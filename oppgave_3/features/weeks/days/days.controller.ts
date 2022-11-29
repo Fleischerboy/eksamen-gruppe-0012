@@ -9,7 +9,6 @@ export const overrideLunchDay = async (
   req: NextApiRequest,
   res: NextApiResponse<Result>
 ) => {
-
   const weekId =
     req.query.week instanceof Array
       ? req.query.week.find((i) => i.includes('week'))
@@ -20,14 +19,18 @@ export const overrideLunchDay = async (
       ? req.query.day.find((i) => i.includes('day'))
       : req.query.day
 
-
-  const employeId = req.body.employeId
+  const employeeId = req.body.employeeId
   const dayId = req.body.dayId
 
-  if(!(weekId && day && employeId && dayId)) {
-    return res.status(400).json({ status: false, error: 'missing week id, day, dayId or employeId' })
+  if (!(weekId && day && employeeId && dayId)) {
+    return res
+      .status(400)
+      .json({
+        status: false,
+        error: 'missing week id, day, dayId or employeId',
+      })
   }
-  
+
   const dayName = day?.toLowerCase()
 
   if (!isWeekDay(dayName)) {
@@ -36,17 +39,16 @@ export const overrideLunchDay = async (
       .json({ status: false, error: `${dayName} is not a day` })
   }
 
+  const override = await daysService.overrideLunchDay(weekId, dayId, employeeId)
 
-  const override = await daysService.overrideLunchDay(weekId, dayId, employeId)
-
-  if(!override.status) {
+  if (!override.status) {
     return res
-    .status(500)
-    .json({ status: false, error: override.error as string })
+      .status(500)
+      .json({ status: false, error: override.error as string })
   }
 
   const overrideData = {
-    override: override.data
+    override: override.data,
   }
 
   return res.status(200).json({ status: true, data: overrideData })

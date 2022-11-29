@@ -7,7 +7,7 @@ Table employee {
   name String [not null]
   rules String [not null]
   days day [not null]
-  override override [not null]
+  overrides override [not null]
 }
 
 Table day {
@@ -39,8 +39,8 @@ Table override {
   createdAt DateTime [default: `now()`, not null]
   weekId Int [not null]
   dayId String [not null]
-  employeeId Int
-  employee employee
+  employeeId Int [not null]
+  employee employee [not null]
   day day [not null]
 }
 

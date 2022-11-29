@@ -8,11 +8,11 @@ export default async function handler(
   switch (req.method?.toLowerCase()) {
     case 'get': {
       // TODO get one day.
-      return res.status(200).json({ status: true, data: 'get one day' })
+      return res.status(200)
     }
     case 'post': {
       await dayController.overrideLunchDay(req, res)
-      break;
+      break
     }
 
     default: {

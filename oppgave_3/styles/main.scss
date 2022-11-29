@@ -85,12 +85,96 @@ hr {
   .one-week-item {
     display: flex;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 2.5rem;
 
     span {
       display: block;
       padding-right: 1rem;
       align-self: flex-start;
+
+      &:nth-child(1) {
+        min-width: 150px;
+      }
+
+      &:nth-child(2) {
+        min-width: 200px;
+      }
     }
+
+    &:nth-of-type(2n) {
+      background-color: whitesmoke;
+    }
+  }
+}
+
+.primary-btn {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ff0055;
+  border-radius: 4px;
+  background: #ff0055;
+  color: white;
+  margin-right: 1rem;
+  text-decoration: none;
+  margin: 0.5rem;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 0, 0, 0.5);
+}
+
+.modalContainer {
+  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  overflow-y: scroll;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+
+  .modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .modal-list {
+    margin-top: 1rem;
+
+    .modal-list-item {
+      padding: 0.5rem;
+
+      .input-container {
+        display: flex;
+        background-color: whitesmoke;
+        padding: 1rem 0.5rem;
+
+        label {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
   }
 }
