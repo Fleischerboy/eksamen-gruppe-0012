@@ -49,7 +49,7 @@ const SelectedWeeks = () => {
     )
 
   if (data) {
-    console.log(data)
+    console.log(data.data.weeks)
     return (
       <>
         <Layout>
