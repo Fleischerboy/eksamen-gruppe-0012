@@ -39,7 +39,7 @@ const Week = () => {
 
   const onClose = () => {
     setOpenModal(false)
-
+    setEditEmployee(null)
   }
 
   const handleRadioChange = (employeeId: number) => {
