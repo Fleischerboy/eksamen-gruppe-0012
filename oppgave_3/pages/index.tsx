@@ -8,26 +8,21 @@ import { useAxios } from '../hooks/useAxios'
 import { getWeeks } from '../api/weeks'
 import { useEffect, useState } from 'react'
 import { Result, Week } from '../types'
-
-
+import SelectWeeks from '../components/selectWeeks'
 
 const Home: NextPage = () => {
-  const {
-    showLunchDays,
-    handleLunchDaysToggle,
-  } = useLunchContext()
+  const { showLunchDays, handleLunchDaysToggle } = useLunchContext()
   const router = useRouter()
   const [LunchData, setLunchData] = useState<Week[]>()
+  const [selectedWeeks, setSelectedWeeks] = useState<Week[]>()
 
   const [loading, data, error] = useAxios<Result>(getWeeks({}))
-
 
   useEffect(() => {
     if (data) {
       setLunchData(data.data.weeks)
     }
   }, [data])
-
 
   const handleWeekClick = (weekNumber: number) => {
     router.push(`weeks/${weekNumber}`)
@@ -37,25 +32,54 @@ const Home: NextPage = () => {
     router.push(`employees/${employeeId}`)
   }
 
-  if (loading) return <main><h1>Henter Lunch data...</h1></main>
-
-  if (error) return (
-    <main><h1>Noe gikk galt med å hente lunch data...</h1> <h3>Error: {JSON.stringify(error)}</h3></main>
-  )
-
-  if (LunchData) {
-    return <>
-      <Layout>
-        <h1>Lunsjkalender</h1>
-        <SmallWeekCards weekList={LunchData} handleWeekClick={handleWeekClick} />
-        <WeekCards weekList={LunchData} handleEmployeeClick={handleEmployeeClick} handleLunchDaysToggle={handleLunchDaysToggle} showLunchDays={showLunchDays} />
-
-      </Layout>
-    </>
+  const handleSelectedWeeks = (start: number, end: number) => {
+    router.push(`selectedWeeks/${start}/${end}`)
   }
 
-  return <main><h1>Lunch data var null</h1></main>
+  if (loading)
+    return (
+      <main>
+        <h1>Henter Lunch data...</h1>
+      </main>
+    )
 
+  if (error)
+    return (
+      <main>
+        <h1>Noe gikk galt med å hente lunch data...</h1>{' '}
+        <h3>Error: {JSON.stringify(error)}</h3>
+      </main>
+    )
+
+  if (LunchData) {
+    return (
+      <>
+        <Layout>
+          <h1>Lunsjkalender</h1>
+          <SmallWeekCards
+            weekList={LunchData}
+            handleWeekClick={handleWeekClick}
+          />
+          <SelectWeeks
+            weekList={LunchData}
+            handleSelectedWeeks={handleSelectedWeeks}
+          />
+          <WeekCards
+            weekList={LunchData}
+            handleEmployeeClick={handleEmployeeClick}
+            handleLunchDaysToggle={handleLunchDaysToggle}
+            showLunchDays={showLunchDays}
+          />
+        </Layout>
+      </>
+    )
+  }
+
+  return (
+    <main>
+      <h1>Lunch data var null</h1>
+    </main>
+  )
 }
 
 export default Home

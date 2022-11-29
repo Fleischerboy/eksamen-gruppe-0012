@@ -5,6 +5,10 @@ main {
   margin: 0 auto;
 }
 
+.select-weeks {
+  display: flex;
+}
+
 .small-week-cards-list {
   display: flex;
   flex-wrap: wrap;
@@ -20,28 +24,19 @@ main {
       color: white;
       font-size: 1.5rem;
       background-color: #333333;
-
     }
   }
-
 }
 
 hr {
   margin: 2rem 0;
 }
 
-
-
-
-
 .week-list {
-
-
   .week-list-item {
     border: black solid 1px;
     padding: 5px;
     margin: 1rem 0;
-
 
     button {
       color: black;
@@ -51,27 +46,21 @@ hr {
       cursor: pointer;
     }
   }
-
-  
-
 }
 
-
 .day-list {
-
   .day-list-item {
     display: flex;
-
 
     span {
       display: block;
       padding: 1rem;
       align-self: flex-start;
-    
+
       &:nth-child(1) {
         min-width: 100px;
       }
-    
+
       &:nth-child(2) {
         padding-left: 5rem;
         min-width: 200px;
@@ -93,7 +82,6 @@ hr {
 }
 
 .one-week-list {
-
   .one-week-item {
     display: flex;
     font-weight: 700;
@@ -103,17 +91,6 @@ hr {
       display: block;
       padding-right: 1rem;
       align-self: flex-start;
-
     }
   }
-
-
 }
-
-
-
-
-
-
-
-
