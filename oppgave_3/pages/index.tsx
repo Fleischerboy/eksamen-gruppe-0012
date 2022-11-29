@@ -6,15 +6,14 @@ import WeekCards from '../components/WeekCards'
 import { useLunchContext } from '../context/LunchContext'
 import { useAxios } from '../hooks/useAxios'
 import { getWeeks } from '../api/weeks'
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Result, Week } from '../types'
-import SelectWeeks from '../components/selectWeeks'
+import SelectWeeks from '../components/SelectWeeks'
 
 const Home: NextPage = () => {
   const { showLunchDays, handleLunchDaysToggle } = useLunchContext()
   const router = useRouter()
   const [LunchData, setLunchData] = useState<Week[]>()
-  const [selectedWeeks, setSelectedWeeks] = useState<Week[]>()
 
   const [loading, data, error] = useAxios<Result>(getWeeks({}))
 
@@ -32,7 +31,8 @@ const Home: NextPage = () => {
     router.push(`employees/${employeeId}`)
   }
 
-  const handleSelectedWeeks = (start: number, end: number) => {
+  const handleSelectedWeeks = (e: FormEvent, start: number, end: number) => {
+    e.preventDefault()
     router.push(`selectedWeeks/${start}/${end}`)
   }
 
