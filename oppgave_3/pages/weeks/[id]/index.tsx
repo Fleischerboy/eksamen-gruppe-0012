@@ -29,6 +29,7 @@ const Week = () => {
 
   useEffect(() => {
     if (router.isReady) {
+      console.log("1")
       request()
     }
   }, [router.isReady])
@@ -78,8 +79,8 @@ const Week = () => {
     )
 
   if (data) {
+    console.log(data)
     const weekData: Day[] = data.data.week.days
-
     return (
       <>
         <Layout>

@@ -49,7 +49,6 @@ const Home: NextPage = () => {
         <h1>Lunsjkalender</h1>
         <SmallWeekCards weekList={LunchData} handleWeekClick={handleWeekClick} />
         <WeekCards weekList={LunchData} handleEmployeeClick={handleEmployeeClick} handleLunchDaysToggle={handleLunchDaysToggle} showLunchDays={showLunchDays} />
-
       </Layout>
     </>
   }

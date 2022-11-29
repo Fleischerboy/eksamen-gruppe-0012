@@ -5,14 +5,15 @@ import { useEffect, useRef } from 'react'
 import Letters from '../components/Letters'
 import Strikes from '../components/Strikes'
 import Words from '../components/Words'
-import { Country } from '../data'
 import { useGame } from '../hooks/useGame'
+import { Country } from '../types'
+
 
 type HomeProps = {
   countryData: Country;
 }
 
-const Home: NextPage<HomeProps> = ({ countryData }) => {
+const Home: NextPage<HomeProps> = ({ countryData }: HomeProps) => {
   const isFirstRender = useRef(true)
   const {
     country,
@@ -34,9 +35,9 @@ const Home: NextPage<HomeProps> = ({ countryData }) => {
   return (
     <main>
       <h1>Gjett flagget</h1>
-      <p className="flag">{countryData?.unicodeFlag}</p> 
-      <Strikes strikes={strikes} /> 
-      <Words words={wordSplit()} isMatch={isMatch} />   
+      <p className="flag">{countryData?.unicodeFlag}</p>
+      <Strikes strikes={strikes} />
+      <Words words={wordSplit()} isMatch={isMatch} />
       <Letters                                       // Passerer mangler isMatch to Words-komponenten for å matche ordene med valgte bokstaver
         handleGuess={handleGuess}
         guesses={guesses}
