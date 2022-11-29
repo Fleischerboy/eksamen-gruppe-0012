@@ -12,14 +12,15 @@ export type Week = {
 }
 
 export type Day = {
+  id: string
   name: string
   lunch: string
   employee: Employee | null
-  overrides: Employee[];
+  overrides: Employee[]
 }
 
 export type Employee = {
-  employee: Employee;
+  employee: Employee
   id: number
   name: string
   rules: string

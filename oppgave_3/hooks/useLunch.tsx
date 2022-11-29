@@ -3,12 +3,10 @@ import { Week } from '../types'
 
 
 
-// TODO type init
 export default function useLunch(init?: Week[]) {
-
   const [LunchData, setLunchData] = useState(init)
-
   const [showLunchDays, setShowLunchDays] = useState<number[]>([])
+
   const handleLunchDaysToggle = (weekNumber: number) => {
     const showState = showLunchDays.slice()
     const index = showState.indexOf(weekNumber); // returns -1 when not found
@@ -30,7 +28,7 @@ export default function useLunch(init?: Week[]) {
     LunchData,
     showLunchDays,
     setLunchData,
-    handleLunchDaysToggle
+    handleLunchDaysToggle,
 
   }
 }

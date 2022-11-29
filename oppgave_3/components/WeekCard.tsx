@@ -18,10 +18,11 @@ const WeekCard = ({ lunchDays, handleEmployeeClick }: WeekCardProps) => {
                 <>
                   {day.overrides.length > 0 ? (
                     <>
-                      {day.overrides.map((ele) => (
+                      {day.overrides.map((ele, index) => (
                         <button
                           onClick={() => handleEmployeeClick(ele?.employee?.id)}
                           type="button"
+                          key={index}
                         >
                           {ele?.employee?.name}
                         </button>

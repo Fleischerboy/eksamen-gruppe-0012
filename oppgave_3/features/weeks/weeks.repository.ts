@@ -85,21 +85,3 @@ export const getWeekById = async (id: string) => {
     return { status: false, error: 'Failed finding week' }
   }
 }
-
-export const getWeekOverrides = async (weekNumber: number) => {
-  try {
-    const overrides = await prisma.override.findMany({
-      where: {
-        weekId: weekNumber,
-      },
-      select: {
-        weekId: true,
-        dayName: true,
-        employeName: true,
-      },
-    })
-    return { status: true, data: overrides }
-  } catch (error) {
-    return { status: false, error: 'Failed finding overrides' }
-  }
-}

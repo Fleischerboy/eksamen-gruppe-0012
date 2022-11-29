@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { createContext } from 'react'
 import useLunch from '../hooks/useLunch'
+import { Week } from '../types'
 
 export type LunchContextTypes = {
+  LunchData: Week[] | undefined
   showLunchDays: number[]
   handleLunchDaysToggle: (weekNumber: number) => void
+  setLunchData: Dispatch<SetStateAction<Week[] | undefined>>
 }
 
 
@@ -15,15 +18,20 @@ export const LunchProvider = ({ children }: { children: React.ReactNode }) => {
 
 
   const {
+    LunchData,
     showLunchDays,
-    handleLunchDaysToggle
+    setLunchData,
+    handleLunchDaysToggle,
 
-  } = useLunch([])
+
+  } = useLunch()
 
 
   return (
     <LunchContext.Provider value={{
+      LunchData,
       showLunchDays,
+      setLunchData,
       handleLunchDaysToggle,
 
     }}>
