@@ -1,23 +1,11 @@
+//source url: https://stackoverflow.com/questions/63066985/send-file-as-response-using-nextjs-api
 import type { NextApiRequest, NextApiResponse } from 'next'
+import * as excelService from './excel.service'
+import * as weekService from '../weeks/weeks.service'
 import fs from 'fs'
 import path from 'path'
-import excel from 'exceljs'
-const filePath = path.resolve('.', 'files/users.xlsx')
+const filePath = path.resolve('.', 'files/lunch.xlsx')
 
-const Users = [
-  {
-    fname: 'Amir',
-    lname: 'Mustafa',
-    email: 'amir@gmail.com',
-    gender: 'Male',
-  },
-  {
-    fname: 'Ashwani',
-    lname: 'Kumar',
-    email: 'ashwani@gmail.com',
-    gender: 'Male',
-  },
-]
 export const exportLunchList = async (
   req: NextApiRequest,
   res: NextApiResponse<any>
@@ -35,9 +23,16 @@ export const exportLunchList = async (
     })
   }
   */
-  if (!fs.existsSync(filePath)) {
-    const createLunchXlsx = await createExcelFile()
-  }
+
+  const lunchListData = await weekService.getAllWeeks()
+  if (lunchListData.error)
+    return res.status(500).json({ status: false, error: lunchListData.error })
+
+  const createFile = await excelService.createExcelFileOfLunchList(
+    lunchListData.data
+  )
+  if (createFile.error)
+    return res.status(500).json({ status: false, error: createFile.error })
 
   if (fs.existsSync(filePath)) {
     const excelBuffer = fs.readFileSync(filePath)
@@ -49,43 +44,5 @@ export const exportLunchList = async (
       .send(excelBuffer)
   } else {
     return res.status(404).json({ status: false, error: 'File not found' })
-  }
-}
-
-const createExcelFile = async () => {
-  const workbook = new excel.Workbook()
-  const worksheet = workbook.addWorksheet('My Sheet')
-
-  const path = './files' // Path to download excel
-
-  worksheet.columns = [
-    { header: 'S no.', key: 's_no', width: 20 },
-    { header: 'First Name', key: 'fname', width: 20 },
-    { header: 'Last Name', key: 'lname', width: 20 },
-    { header: 'Email Id', key: 'email', width: 20 },
-    { header: 'Gender', key: 'gender', width: 20 },
-  ]
-
-  // Looping through User data
-  let counter = 1
-  Users.forEach((user) => {
-    user.s_no = counter
-    worksheet.addRow(user) // Add data in worksheet
-    counter++
-  })
-
-  // Making first line in excel bold
-  worksheet.getRow(1).eachCell((cell: any) => {
-    cell.font = { bold: true }
-  })
-
-  try {
-    const data = await workbook.xlsx
-      .writeFile(`${path}/users.xlsx`)
-      .then(() => {
-        console.log('success')
-      })
-  } catch (error) {
-    throw error
   }
 }
