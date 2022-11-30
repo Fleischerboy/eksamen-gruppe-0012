@@ -7,13 +7,14 @@ type EmployeeProps = {
 const EmployeeOverview = ({ employeeObject }: EmployeeProps) => {
   return (
     <>
-      <h1>Oversikt over jobbdager for: {employeeObject.name}</h1>
-      <ul className="employee-oversikt">
+      <h1 className="employee-header">
+        Oversikt over jobbdager for: {employeeObject.name}
+      </h1>
+      <ul className="employee-overview">
         {employeeObject.days.map((week: any, index: number) => (
           <li key={index} className="employee-list">
-            <span>
-              Dag: {week.name}, ukenr: {week.week.week}
-            </span>
+            <h3>ukenr: {week.week.week}</h3>
+            <span>Dag: {week.name}</span>
           </li>
         ))}
       </ul>
