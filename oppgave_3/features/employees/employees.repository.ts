@@ -26,3 +26,25 @@ export const findUnique = async (employeeId: number) => {
     return { status: false, error: 'Failed finding employee' }
   }
 }
+
+export const getAllEmployees = async () => {
+  try {
+    const employees = await db.employee.findMany({
+      include: {
+        days: {
+          select: {
+            name: true,
+            week: {
+              select: {
+                week: true,
+              },
+            },
+          },
+        },
+      },
+    })
+    return { status: true, data: employees }
+  } catch (error) {
+    return { status: false, error: 'No employees found' }
+  }
+}
