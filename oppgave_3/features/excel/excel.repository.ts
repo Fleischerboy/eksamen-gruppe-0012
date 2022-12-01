@@ -1,4 +1,4 @@
-// URL: https://medium.com/geekculture/exporting-data-in-excel-file-in-node-js-f1b298997d47 
+// URL: https://medium.com/geekculture/exporting-data-in-excel-file-in-node-js-f1b298997d47
 import excel from 'exceljs'
 import { Day, Week } from '../../types'
 
@@ -6,7 +6,7 @@ export const createExcelFileOfLunchList = async (lunchListData: Week[]) => {
   const workbook = new excel.Workbook()
   const worksheet = workbook.addWorksheet('My Lunch Sheet')
 
-  const path = './files' // Path to download excel
+  const path = './files'
 
   worksheet.columns = [
     { header: 'Week Number', key: 'week', width: 20 },

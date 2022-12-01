@@ -1,9 +1,13 @@
-@import './globals.scss';
+@import "./globals.scss";
+
+$btn-primary: #e80f5b;
 
 main {
   max-width: 760px;
   margin: 0 auto;
 }
+
+
 
 .small-week-cards-list {
   display: flex;
@@ -20,28 +24,19 @@ main {
       color: white;
       font-size: 1.5rem;
       background-color: #333333;
-
     }
   }
-
 }
 
 hr {
   margin: 2rem 0;
 }
 
-
-
-
-
 .week-list {
-
-
   .week-list-item {
     border: black solid 1px;
     padding: 5px;
     margin: 1rem 0;
-
 
     button {
       color: black;
@@ -51,22 +46,17 @@ hr {
       cursor: pointer;
     }
   }
-
-
-
 }
 
-
 .day-list {
-
   .day-list-item {
     display: flex;
-
 
     span {
       display: block;
       padding: 1rem;
       align-self: flex-start;
+
 
       &:nth-child(1) {
         min-width: 100px;
@@ -76,8 +66,6 @@ hr {
         padding-left: 5rem;
         min-width: 200px;
       }
-
-
     }
 
     &:nth-of-type(2n) {
@@ -96,16 +84,21 @@ hr {
 
 .one-week-list {
 
+  h1 {
+    font-size: 3rem;
+  }
+
   .one-week-item {
     display: flex;
     font-weight: 700;
     font-size: 2.5rem;
+    padding: 1rem;
+
 
     span {
       display: block;
       padding-right: 1rem;
       align-self: flex-start;
-
 
       &:nth-child(1) {
         min-width: 150px;
@@ -120,11 +113,7 @@ hr {
       background-color: whitesmoke;
     }
   }
-
 }
-
-
-
 
 .primary-btn {
   font-size: 1.5rem;
@@ -135,13 +124,25 @@ hr {
   color: white;
   margin-right: 1rem;
   text-decoration: none;
-  margin: 0.5rem;
   cursor: pointer;
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  &:hover {
+    box-shadow: 0 4px 15px 0 rgba(#000000, 0.1);
+    color: $btn-primary;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  &--transparent {
+    color: $btn-primary;
+    background-color: transparent;
+  }
+
 }
 
 .overlay {
@@ -156,7 +157,6 @@ hr {
   background-color: rgb(0, 0, 0, 0.5);
 }
 
-
 .modalContainer {
   width: 100%;
   max-width: 500px;
@@ -168,13 +168,12 @@ hr {
   transform: translate(-50%, -50%);
   background-color: white;
 
-
   .modal-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
-
+    margin: 1rem;
+    font-size: 1.5rem;
   }
 
   .modal-list {
@@ -183,24 +182,22 @@ hr {
     .modal-list-item {
       padding: 0.5rem;
 
-
       .input-container {
         display: flex;
         background-color: whitesmoke;
         padding: 1rem 0.5rem;
 
         label {
+          font-size: 1.5rem;
           margin-left: 10px;
         }
       }
-
-
     }
   }
 
   .modal-footer {
     display: flex;
     justify-content: space-between;
-
+    padding: 1rem;
   }
 }

@@ -79,14 +79,14 @@ const Week = () => {
     )
 
   if (data) {
-    console.log(data)
     const weekData: Day[] = data.data.week.days
     return (
       <>
         <Layout>
           <>
-            <h1>Uke: {id}</h1>
+
             <ul className="one-week-list">
+              <h1>Uke: {id}</h1>
               {weekData.map((day: Day, index: number) => (
                 <li className="one-week-item" key={index}>
                   <span>{day.name}</span>
