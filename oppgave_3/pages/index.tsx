@@ -31,8 +31,12 @@ const Home: NextPage = () => {
   }, [data])
 
   const handleExport = async (fileName: string) => {
+    // URL https://stackoverflow.com/questions/50694881/how-to-download-file-in-react-js
     await axios(downloadLunchList({
-      headers: { 'content_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' },
+      responseType: 'blob',
+      headers: {
+        'content_type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      },
     })).then((res) => {
       fileDownload(res.data, fileName)
     }).catch((error) => {
@@ -62,7 +66,7 @@ const Home: NextPage = () => {
       <Layout>
         <h1>Lunsjkalender</h1>
         <SmallWeekCards weekList={LunchData} handleWeekClick={handleWeekClick} />
-        <button onClick={() => handleExport("lunchList.xlsx")} className='primary-btn'>eksporter lunsj listen</button>
+        <button onClick={() => handleExport("lunch.xlsx")} className='primary-btn'>eksporter lunsj listen</button>
         <WeekCards weekList={LunchData} handleEmployeeClick={handleEmployeeClick} handleLunchDaysToggle={handleLunchDaysToggle} showLunchDays={showLunchDays} />
       </Layout>
     </>
