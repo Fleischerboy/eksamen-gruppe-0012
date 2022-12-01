@@ -5,3 +5,5 @@ describe('Lunch', () => {
     expect(true).toBe(true)
   })
 })
+
+describe('should render content inside index/home page at path "/"', () => {})

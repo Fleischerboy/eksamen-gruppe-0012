@@ -31,7 +31,7 @@ const Home: NextPage = () => {
   }, [data])
 
   const handleExport = async (fileName: string) => {
-    // URL https://stackoverflow.com/questions/50694881/how-to-download-file-in-react-js
+    // URL: https://stackoverflow.com/questions/50694881/how-to-download-file-in-react-js
     await axios(downloadLunchList({
       responseType: 'blob',
       headers: {
@@ -42,7 +42,6 @@ const Home: NextPage = () => {
     }).catch((error) => {
       console.log(error)
     })
-
   }
 
   const handleWeekClick = (weekNumber: number) => {
