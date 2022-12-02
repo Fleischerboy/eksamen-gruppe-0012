@@ -26,7 +26,9 @@ const WeekCards = ({ weekList, showLunchDays, handleLunchDaysToggle, handleEmplo
                                 )}
                                 <button
                                     type="button"
-                                    onClick={() => handleLunchDaysToggle(item.week)}>
+                                    onClick={() => handleLunchDaysToggle(item.week)}
+                                    data-testid="see-days"
+                                >
                                     Se dager
                                 </button>
                             </li>

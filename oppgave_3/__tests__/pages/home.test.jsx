@@ -7,6 +7,7 @@ import {
   screen,
   waitForElementToBeRemoved,
 } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { rest, DefaultRequestBody } from 'msw'
 import { LunchProvider } from '../../context/LunchContext.tsx'
 import { lunchDataForTest } from './data/index'
@@ -37,6 +38,7 @@ describe('should render content inside index/homePage at path: "/"', () => {
       screen.getByText('Henter Lunch data...')
     )
   })
+
   it('should render h1 heading: "Lunsjkalender"', async () => {
     render(
       <LunchProvider>
@@ -91,5 +93,15 @@ describe('should render content inside index/homePage at path: "/"', () => {
       await screen.findByTestId('week-list')
     ).getElementsByTagName('li').length
     expect(weekCardsWeekList).toBe(52)
+  })
+
+  it('should render export button', async () => {
+    render(
+      <LunchProvider>
+        <Home />
+      </LunchProvider>
+    )
+    const exportBtn = await screen.findByTestId('export-lunch-btn')
+    expect(exportBtn).toBeInTheDocument()
   })
 })

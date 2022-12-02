@@ -70,7 +70,7 @@ const Home: NextPage = () => {
     <Layout>
       <h1>Lunsjkalender</h1>
       <SmallWeekCards weekList={LunchData} handleWeekClick={handleWeekClick} />
-      <button onClick={() => handleExport("lunch.xlsx")} className='primary-btn'>eksporter lunsj listen</button>
+      <button data-testid="export-lunch-btn" onClick={() => handleExport("lunch.xlsx")} className='primary-btn'>eksporter lunsj listen</button>
       <WeekCards weekList={LunchData} handleEmployeeClick={handleEmployeeClick} handleLunchDaysToggle={handleLunchDaysToggle} showLunchDays={showLunchDays} />
     </Layout>
   </>

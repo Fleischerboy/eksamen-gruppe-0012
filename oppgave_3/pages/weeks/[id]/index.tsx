@@ -103,6 +103,7 @@ const Week = () => {
                       )}
                     </span>
                     <button
+                      data-testid="edit-lunch-btn"
                       className="primary-btn"
                       onClick={() => { setOpenModal(!openModal); setDay(day.name); setDayId(day.id) }}
                     >
