@@ -9,13 +9,13 @@ import {
 } from '@testing-library/react'
 import { rest, DefaultRequestBody } from 'msw'
 import { LunchProvider } from '../../context/LunchContext.tsx'
-import { weeksData } from './data/index'
+import { lunchDataForTest } from './data/index'
 import { setupServer } from 'msw/node'
 
 const WEEKS_URL = 'http://localhost:3000/api/weeks'
 
 const weeksResponse = rest.get(WEEKS_URL, (req, res, ctx) => {
-  return res(ctx.json(weeksData))
+  return res(ctx.json(lunchDataForTest))
 })
 
 // server handlers
@@ -26,7 +26,7 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
-describe('should render content inside index/home page at path: "/"', () => {
+describe('should render content inside index/homePage at path: "/"', () => {
   beforeEach(async () => {
     render(
       <LunchProvider>
@@ -46,7 +46,29 @@ describe('should render content inside index/home page at path: "/"', () => {
     expect(screen.getByText('Lunsjkalender')).toBeInTheDocument()
   })
 
-  it('should render weekcards component"', async () => {
+  it('should render smallWeekCards component', async () => {
+    render(
+      <LunchProvider>
+        <Home />
+      </LunchProvider>
+    )
+    const smallWeekCards = await screen.findByTestId('small-week-cards')
+    expect(smallWeekCards).toBeInTheDocument()
+  })
+
+  it('should render all 52 smallWeekCards', async () => {
+    render(
+      <LunchProvider>
+        <Home />
+      </LunchProvider>
+    )
+    const smallWeekCards = (
+      await screen.findByTestId('small-week-cards-list')
+    ).getElementsByTagName('li').length
+    expect(smallWeekCards).toBe(52)
+  })
+
+  it('should render weekCards component"', async () => {
     render(
       <LunchProvider>
         <Home />
@@ -65,5 +87,9 @@ describe('should render content inside index/home page at path: "/"', () => {
     for (let i = 1; i <= 52; i++) {
       expect(screen.getByText(`Uke ${i}`)).toBeInTheDocument()
     }
+    const weekCardsWeekList = (
+      await screen.findByTestId('week-list')
+    ).getElementsByTagName('li').length
+    expect(weekCardsWeekList).toBe(52)
   })
 })

@@ -1,4 +1,4 @@
-export const weeksData = {
+export const lunchDataForTest = {
   status: true,
   data: {
     weeks: [
