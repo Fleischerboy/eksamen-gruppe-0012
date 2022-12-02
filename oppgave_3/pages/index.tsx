@@ -9,8 +9,8 @@ import { getWeeks } from '../api/weeks'
 import { useEffect, useState } from 'react'
 import { Result, Week } from '../types'
 import axios from 'axios'
-import { downloadLunchList } from '../api/ExcelExports'
 import fileDownload from 'js-file-download'
+import { downloadLunchList } from '../api/excelExports'
 
 
 const Home: NextPage = () => {
@@ -53,27 +53,27 @@ const Home: NextPage = () => {
   }
 
   if (loading) return (
-    <main><h1>Henter Lunch data...</h1></main>
+    <main><h1 data-testid="loading-lunch">Henter Lunch data...</h1></main>
   )
 
   if (error) return (
     <main><h1>Noe gikk galt med å hente lunch data...</h1> <h3>Error: {JSON.stringify(error)}</h3></main>
   )
 
-  if (LunchData) {
-    return (<>
-      <Layout>
-        <h1>Lunsjkalender</h1>
-        <SmallWeekCards weekList={LunchData} handleWeekClick={handleWeekClick} />
-        <button onClick={() => handleExport("lunch.xlsx")} className='primary-btn'>eksporter lunsj listen</button>
-        <WeekCards weekList={LunchData} handleEmployeeClick={handleEmployeeClick} handleLunchDaysToggle={handleLunchDaysToggle} showLunchDays={showLunchDays} />
-      </Layout>
-    </>
+  if (!LunchData) {
+    return (
+      <main><h1>Lunch data var null</h1></main>
     )
   }
 
-  return (
-    <main><h1>Lunch data var null</h1></main>
+  return (<>
+    <Layout>
+      <h1>Lunsjkalender</h1>
+      <SmallWeekCards weekList={LunchData} handleWeekClick={handleWeekClick} />
+      <button onClick={() => handleExport("lunch.xlsx")} className='primary-btn'>eksporter lunsj listen</button>
+      <WeekCards weekList={LunchData} handleEmployeeClick={handleEmployeeClick} handleLunchDaysToggle={handleLunchDaysToggle} showLunchDays={showLunchDays} />
+    </Layout>
+  </>
   )
 
 }
