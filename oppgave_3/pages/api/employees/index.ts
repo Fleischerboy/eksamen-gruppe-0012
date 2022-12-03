@@ -11,10 +11,19 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Result>
 ) {
-  switch (req.method?.toLowerCase()) {
+  const { method } = req
+  switch (method?.toLowerCase()) {
     case 'get':
-      await employeeController.getAllEmployees(req, res)
+      return employeeController.getAllEmployees(req, res)
       break
+    case 'post':
+      await employeeController.createEmployee(req, res)
+      break
+
+    case 'delete':
+      // return res.status(200).json({})
+      break
+
     default:
       return res.status(405).json({
         status: false,

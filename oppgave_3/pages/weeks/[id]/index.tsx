@@ -29,6 +29,7 @@ const Week = () => {
 
   useEffect(() => {
     if (router.isReady) {
+      console.log("1")
       request()
     }
   }, [router.isReady])
@@ -79,13 +80,13 @@ const Week = () => {
 
   if (data) {
     const weekData: Day[] = data.data.week.days
-
     return (
       <>
         <Layout>
           <>
-            <h1>Uke: {id}</h1>
+
             <ul className="one-week-list">
+              <h1>Uke: {id}</h1>
               {weekData.map((day: Day, index: number) => (
                 <li className="one-week-item" key={index}>
                   <span>{day.name}</span>
@@ -102,6 +103,7 @@ const Week = () => {
                       )}
                     </span>
                     <button
+                      data-testid="edit-lunch-btn"
                       className="primary-btn"
                       onClick={() => { setOpenModal(!openModal); setDay(day.name); setDayId(day.id) }}
                     >

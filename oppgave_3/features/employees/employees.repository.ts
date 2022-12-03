@@ -48,3 +48,28 @@ export const getAllEmployees = async () => {
     return { status: false, error: 'No employees found' }
   }
 }
+
+export const create = async (data: any) => {
+  try {
+    const employee = await db.employee.create({
+      data,
+    })
+    return { status: true, data: employee }
+  } catch (error) {
+    return { status: false, error: 'Failed creating employee' }
+  }
+}
+
+export const update = async (employeeId: number, data: any) => {
+  try {
+    const employee = await db.employee.update({
+      where: {
+        id: employeeId,
+      },
+      data,
+    })
+    return { status: true, data: employee }
+  } catch (error) {
+    return { status: false, error: 'Failed updating employee' }
+  }
+}

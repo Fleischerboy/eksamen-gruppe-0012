@@ -23,7 +23,7 @@ const createData = async () => {
       const weekNum = weekNumber
       const employee: Employee = lunchData[weekNumber].week[day]
       const lunchFood =
-      lunchFoodData[Math.floor(Math.random() * lunchFoodData.length)]
+        lunchFoodData[Math.floor(Math.random() * lunchFoodData.length)]
       console.log(weekNum, day, employee, lunchFood)
 
       if (employee) {

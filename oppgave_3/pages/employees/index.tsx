@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { MouseEventHandler, useEffect } from 'react'
 import { getEmployee, getEmployees } from '../../api/employee'
+import CreateFormCard from '../../components/CreateFormCard'
 import EmployeeOverview from '../../components/EmployeeOverview'
 import EmployeesView from '../../components/EmployeesView'
 import Layout from '../../components/Layout'
@@ -42,6 +43,7 @@ const Employees = () => {
     return (
       <>
         <Layout>
+          <CreateFormCard />
           <EmployeesView
             employeesData={data.data.employees}
             handleOnClick={handleOnClick}

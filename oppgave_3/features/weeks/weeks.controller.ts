@@ -2,7 +2,6 @@ import { findMany } from './weeks.repository'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Data, Error, Result } from '../../types/index'
 import * as weekService from './weeks.service'
-import lunchData from '../../data/lunch.json'
 
 export const getAllWeeks = async (
   req: NextApiRequest,
@@ -16,7 +15,7 @@ export const getAllWeeks = async (
   const weeksData = {
     weeks: weeks.data,
   }
-  res.status(200).json({ status: true, data: weeksData })
+  return res.status(200).json({ status: true, data: weeksData })
 }
 
 export const getWeekById = async (
@@ -29,7 +28,7 @@ export const getWeekById = async (
       : req.query.week
 
   if (!id)
-    return res.status(400).json({ status: false, error: 'missing employee id' })
+    return res.status(400).json({ status: false, error: 'missing week id' })
 
   const week = await weekService.getWeekById(id)
 

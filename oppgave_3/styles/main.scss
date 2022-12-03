@@ -1,5 +1,7 @@
 @import './globals.scss';
 
+$btn-primary: #e80f5b;
+
 main {
   max-width: 760px;
   margin: 0 auto;
@@ -123,10 +125,15 @@ hr {
 }
 
 .one-week-list {
+  h1 {
+    font-size: 3rem;
+  }
+
   .one-week-item {
     display: flex;
     font-weight: 700;
     font-size: 2.5rem;
+    padding: 1rem;
 
     span {
       display: block;
@@ -157,12 +164,23 @@ hr {
   color: white;
   margin-right: 1rem;
   text-decoration: none;
-  margin: 0.5rem;
   cursor: pointer;
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 15px 0 rgba(#000000, 0.1);
+    color: $btn-primary;
+    border-color: transparent;
+    background-color: transparent;
+  }
+
+  &--transparent {
+    color: $btn-primary;
+    background-color: transparent;
   }
 }
 
@@ -181,7 +199,7 @@ hr {
 .modalContainer {
   width: 100%;
   max-width: 500px;
-  max-height: 500px;
+  max-height: 550px;
   overflow-y: scroll;
   position: fixed;
   top: 40%;
@@ -193,7 +211,8 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 1rem;
+    margin: 1rem;
+    font-size: 1.5rem;
   }
 
   .modal-list {
@@ -208,6 +227,7 @@ hr {
         padding: 1rem 0.5rem;
 
         label {
+          font-size: 1.5rem;
           margin-left: 10px;
         }
       }
@@ -217,5 +237,19 @@ hr {
   .modal-footer {
     display: flex;
     justify-content: space-between;
+    padding: 1rem;
+  }
+}
+
+.form {
+  display: grid;
+}
+
+.textfield {
+  label {
+    text-transform: capitalize;
+  }
+  input {
+    min-width: 100%;
   }
 }

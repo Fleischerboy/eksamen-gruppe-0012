@@ -15,25 +15,28 @@ const WeekCards = ({ weekList, showLunchDays, handleLunchDaysToggle, handleEmplo
 
     return (
         <>
-            {/*console.table(weekList)*/}
-            {weekList?.length > 0 ? (
-                <ul className="week-list">
-                    {weekList.map((item, index: number) => (
-                        <li key={index} className="week-list-item">
-                            <h1>Uke {item.week}</h1>
-                            {showLunchDays.includes(item.week) && (
-                                <WeekCard lunchDays={item.days} handleEmployeeClick={handleEmployeeClick} />
-                            )}
-                            <button
-                                type="button"
-                                onClick={() => handleLunchDaysToggle(item.week)}>
-                                Se dager
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            ) : null}
+            <div className="week-cards" data-testid="week-cards">
+                {weekList?.length > 0 ? (
+                    <ul className="week-list" data-testid="week-list">
+                        {weekList.map((item, index: number) => (
+                            <li key={index} className="week-list-item" data-testid="week-list-item">
+                                <h1>Uke {item.week}</h1>
+                                {showLunchDays.includes(item.week) && (
+                                    <WeekCard lunchDays={item.days} handleEmployeeClick={handleEmployeeClick} />
+                                )}
+                                <button
+                                    type="button"
+                                    onClick={() => handleLunchDaysToggle(item.week)}
+                                    data-testid="see-days"
+                                >
+                                    Se dager
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
 
+                ) : null}
+            </div>
         </>
     )
 }

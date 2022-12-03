@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { getEmployee } from '../../../api/employee'
 import EmployeeOverview from '../../../components/EmployeeOverview'
 import Layout from '../../../components/Layout'
+import UpdateFormCard from '../../../components/UpdateFormCard'
 import { useAxios } from '../../../hooks/useAxios'
 import { Result } from '../../../types'
 
@@ -42,6 +43,7 @@ const Employee = () => {
     return (
       <>
         <Layout>
+          <UpdateFormCard refreshData={request} id={Number(id)} />
           <EmployeeOverview employeeObject={data.data.employee} />
         </Layout>
       </>
