@@ -6,8 +6,6 @@ export const overrideLunchDay = async (
   dayId: string,
   employeeId: string
 ) => {
-  //TODO CHECK IF DAYID EXIST & SAME ON EMPLOYE
-
   const createOverride = await repoDays.overrideLunch(weekId, dayId, employeeId)
 
   if (!createOverride.status)

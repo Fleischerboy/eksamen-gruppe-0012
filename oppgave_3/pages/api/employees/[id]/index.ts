@@ -14,7 +14,7 @@ export default async function handler(
       await employeeController.getEmployeeAndLunchDaysById(req, res)
       break
     case 'put':
-    await employeeController.updateEmployee(req, res)
+      await employeeController.updateEmployee(req, res)
       break
 
     case 'delete':

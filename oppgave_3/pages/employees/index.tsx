@@ -9,48 +9,48 @@ import { useAxios } from '../../hooks/useAxios'
 import { Result } from '../../types'
 
 const Employees = () => {
-  const router = useRouter()
-  const [loading, data, error, request] = useAxios<Result>(
-    getEmployees({}),
-    false
-  )
+    const router = useRouter()
+    const [loading, data, error, request] = useAxios<Result>(
+        getEmployees({}),
+        false
+    )
 
-  useEffect(() => {
-    if (router.isReady) {
-      request()
+    useEffect(() => {
+        if (router.isReady) {
+            request()
+        }
+    }, [router.isReady])
+
+    const handleOnClick = (employeeId: string) => {
+        router.push(`employees/${employeeId}`)
     }
-  }, [router.isReady])
 
-  const handleOnClick = (employeeId: string) => {
-    router.push(`employees/${employeeId}`)
-  }
+    if (loading)
+        return (
+            <main>
+                <h1>Henter data...</h1>
+            </main>
+        )
 
-  if (loading)
-    return (
-      <main>
-        <h1>Henter data...</h1>
-      </main>
-    )
+    if (error)
+        return (
+            <main>
+                <h1>Noe gikk galt...</h1> <h3>Error: {JSON.stringify(error)}</h3>
+            </main>
+        )
 
-  if (error)
-    return (
-      <main>
-        <h1>Noe gikk galt...</h1> <h3>Error: {JSON.stringify(error)}</h3>
-      </main>
-    )
-
-  if (data)
-    return (
-      <>
-        <Layout>
-          <CreateFormCard />
-          <EmployeesView
-            employeesData={data.data.employees}
-            handleOnClick={handleOnClick}
-          />
-        </Layout>
-      </>
-    )
+    if (data)
+        return (
+            <>
+                <Layout>
+                    <CreateFormCard />
+                    <EmployeesView
+                        employeesData={data.data.employees}
+                        handleOnClick={handleOnClick}
+                    />
+                </Layout>
+            </>
+        )
 }
 
 export default Employees

@@ -23,12 +23,10 @@ export const overrideLunchDay = async (
   const dayId = req.body.dayId
 
   if (!(weekId && day && employeeId && dayId)) {
-    return res
-      .status(400)
-      .json({
-        status: false,
-        error: 'missing week id, day, dayId or employeId',
-      })
+    return res.status(400).json({
+      status: false,
+      error: 'missing week id, day, dayId or employeId',
+    })
   }
 
   const dayName = day?.toLowerCase()
