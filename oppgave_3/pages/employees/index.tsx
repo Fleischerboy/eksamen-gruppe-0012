@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { MouseEventHandler, useEffect } from 'react'
 import { getEmployee, getEmployees } from '../../api/employee'
 import EmployeeOverview from '../../components/EmployeeOverview'
 import EmployeesView from '../../components/EmployeesView'
@@ -20,6 +20,10 @@ const Employees = () => {
     }
   }, [router.isReady])
 
+  const handleOnClick = (employeeId: string) => {
+    router.push(`employees/${employeeId}`)
+  }
+
   if (loading)
     return (
       <main>
@@ -38,7 +42,10 @@ const Employees = () => {
     return (
       <>
         <Layout>
-          <EmployeesView employeesData={data.data.employees} />
+          <EmployeesView
+            employeesData={data.data.employees}
+            handleOnClick={handleOnClick}
+          />
         </Layout>
       </>
     )

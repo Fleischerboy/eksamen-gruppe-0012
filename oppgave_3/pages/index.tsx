@@ -36,6 +36,10 @@ const Home: NextPage = () => {
     router.push(`selectedWeeks/${start}/${end}`)
   }
 
+  const goToEmployees = () => {
+    router.push(`employees`)
+  }
+
   if (loading)
     return (
       <main>
@@ -60,6 +64,13 @@ const Home: NextPage = () => {
             weekList={LunchData}
             handleWeekClick={handleWeekClick}
           />
+          <button
+            onClick={() => {
+              goToEmployees()
+            }}
+          >
+            Gå til ansatte
+          </button>
           <SelectWeeks
             weekList={LunchData}
             handleSelectedWeeks={handleSelectedWeeks}
