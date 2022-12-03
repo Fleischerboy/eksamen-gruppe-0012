@@ -23,7 +23,7 @@ const createData = async () => {
       const weekNum = weekNumber
       const employee: Employee = lunchData[weekNumber].week[day]
       const lunchFood =
-      lunchFoodData[Math.floor(Math.random() * lunchFoodData.length)]
+        lunchFoodData[Math.floor(Math.random() * lunchFoodData.length)]
       console.log(weekNum, day, employee, lunchFood)
 
       if (employee) {
@@ -34,7 +34,7 @@ const createData = async () => {
         })
 
         if (!checkIfEmployeeExist) {
-          const createEmployee = await prisma.employee.create({
+          await prisma.employee.create({
             data: {
               id: employee.id,
               name: employee.name,
@@ -43,7 +43,7 @@ const createData = async () => {
           })
         }
       }
-      const createDay = await prisma.day.create({
+      await prisma.day.create({
         data: {
           name: day,
           employeeId: employee?.id,
@@ -57,6 +57,7 @@ const createData = async () => {
 
 async function main() {
   console.log(`Start seeding ...`)
+  await prisma.override.deleteMany({})
   await prisma.day.deleteMany({})
   await prisma.employee.deleteMany({})
   await prisma.week.deleteMany({})
@@ -67,9 +68,10 @@ async function main() {
   console.log(`Seeding finished.`)
 }
 
-main()
+export const seedScript = main()
   .catch((e) => {
     console.error(e)
+
     process.exit(1)
   })
   .finally(async () => {
