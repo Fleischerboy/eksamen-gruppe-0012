@@ -34,7 +34,7 @@ const createData = async () => {
         })
 
         if (!checkIfEmployeeExist) {
-          await prisma.employee.create({
+          const createEmployee = await prisma.employee.create({
             data: {
               id: employee.id,
               name: employee.name,
@@ -43,7 +43,7 @@ const createData = async () => {
           })
         }
       }
-      await prisma.day.create({
+      const createDay = await prisma.day.create({
         data: {
           name: day,
           employeeId: employee?.id,
@@ -57,7 +57,6 @@ const createData = async () => {
 
 async function main() {
   console.log(`Start seeding ...`)
-  await prisma.override.deleteMany({})
   await prisma.day.deleteMany({})
   await prisma.employee.deleteMany({})
   await prisma.week.deleteMany({})
@@ -68,10 +67,9 @@ async function main() {
   console.log(`Seeding finished.`)
 }
 
-export const seedScript = main()
+main()
   .catch((e) => {
     console.error(e)
-
     process.exit(1)
   })
   .finally(async () => {

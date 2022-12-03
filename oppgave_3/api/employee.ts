@@ -16,3 +16,21 @@ export const getEmployee = (id: string | undefined, options: any) => {
     ...options,
   }
 }
+
+export const createEmployee = (options: any) => {
+  return {
+    method: 'POST',
+    url: `${EMPLOYEES_URL}`,
+    ...options,
+  }
+}
+
+export const updateEmployee = (id: string | undefined, options: any) => {
+  console.log(id, options)
+
+  return {
+    method: 'PUT',
+    url: `${EMPLOYEES_URL}/${id}`,
+    ...options,
+  }
+}

@@ -201,3 +201,17 @@ hr {
     padding: 1rem;
   }
 }
+
+
+.form {
+  display: grid;
+}
+
+.textfield {
+  label {
+    text-transform: capitalize;
+  }
+  input {
+    min-width: 100%;
+  }
+}

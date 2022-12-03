@@ -1,3 +1,5 @@
+import { AxiosRequestConfig } from 'axios'
+import axiosFetcher from '../lib/axiosFetch'
 const BASE_URL: string = '/api'
 const WEEKS_URL: string = `${BASE_URL}/weeks`
 
