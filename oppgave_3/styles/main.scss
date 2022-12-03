@@ -1,4 +1,4 @@
-@import "./globals.scss";
+@import './globals.scss';
 
 $btn-primary: #e80f5b;
 
@@ -7,7 +7,50 @@ main {
   margin: 0 auto;
 }
 
+.search-bar {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 20px;
+}
 
+.search {
+  width: 50%;
+}
+
+.employee-header {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.employee-overview {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.employee-list {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h3 {
+    font-size: 2rem;
+  }
+  span {
+    font-size: 2rem;
+  }
+}
+
+.select-weeks {
+  display: flex;
+}
 
 .small-week-cards-list {
   display: flex;
@@ -57,7 +100,6 @@ hr {
       padding: 1rem;
       align-self: flex-start;
 
-
       &:nth-child(1) {
         min-width: 100px;
       }
@@ -83,7 +125,6 @@ hr {
 }
 
 .one-week-list {
-
   h1 {
     font-size: 3rem;
   }
@@ -93,7 +134,6 @@ hr {
     font-weight: 700;
     font-size: 2.5rem;
     padding: 1rem;
-
 
     span {
       display: block;
@@ -142,7 +182,6 @@ hr {
     color: $btn-primary;
     background-color: transparent;
   }
-
 }
 
 .overlay {
@@ -201,7 +240,6 @@ hr {
     padding: 1rem;
   }
 }
-
 
 .form {
   display: grid;

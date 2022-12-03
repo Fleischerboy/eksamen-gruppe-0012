@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { getEmployee } from '../../../api/employee'
+import EmployeeOverview from '../../../components/EmployeeOverview'
 import Layout from '../../../components/Layout'
 import UpdateFormCard from '../../../components/UpdateFormCard'
 import { useAxios } from '../../../hooks/useAxios'
@@ -38,15 +39,15 @@ const Employee = () => {
       </main>
     )
 
-  return (
-    <>
-      <h1>employee {id}</h1>
-      <h1>{JSON.stringify(data)}</h1>
-      <Layout>
-        <UpdateFormCard refreshData={request} id={Number(id)} />
-      </Layout>
-    </>
-  )
+  if (data)
+    return (
+      <>
+        <Layout>
+          <UpdateFormCard refreshData={request} id={Number(id)} />
+          <EmployeeOverview employeeObject={data.data.employee} />
+        </Layout>
+      </>
+    )
 }
 
 export default Employee

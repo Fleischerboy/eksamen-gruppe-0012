@@ -1,3 +1,4 @@
+import { employees } from './../../data/employees'
 import * as employeeRepo from './employees.repository'
 
 export const getEmployeeById = async (id: string) => {
@@ -17,6 +18,21 @@ export const getEmployeeById = async (id: string) => {
   return { status: true, data: employee.data }
 }
 
+export const getAllEmployees = async () => {
+  const employees = await employeeRepo.getAllEmployees()
+
+  if (!employees.status) {
+    return { status: false, error: employees.error }
+  }
+
+  if (!employees.data) {
+    return {
+      status: false,
+      error: 'No employees found',
+    }
+  }
+  return { status: true, data: employees.data }
+}
 export const createEmployee = async (data: any) => {
   const employee = await employeeRepo.create(data)
 

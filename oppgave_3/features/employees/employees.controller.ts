@@ -1,3 +1,4 @@
+import { employees } from './../../data/employees'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import * as employeeService from '../employees/employees.service'
 import { Result } from '../../types'
@@ -36,7 +37,6 @@ export const getEmployeeAndLunchDaysById = async (
   }
   return res.status(200).json({ status: true, data: employeeData })
 }
-
 
 export const createEmployee = async (
   req: NextApiRequest,
@@ -100,4 +100,23 @@ export const updateEmployee = async (
     employee: employee.data,
   }
   return res.status(200).json({ status: true, data: employeeData })
+}
+export const getAllEmployees = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Result>
+) => {
+  const employees = await employeeService.getAllEmployees()
+
+  if (!employees?.status) {
+    return res.status(500).json({
+      status: false,
+      error: employees.error as string,
+    })
+  }
+
+  const employeesData = {
+    employees: employees.data,
+  }
+
+  return res.status(200).json({ status: true, data: employeesData })
 }

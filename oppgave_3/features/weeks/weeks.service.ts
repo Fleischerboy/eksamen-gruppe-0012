@@ -26,3 +26,20 @@ export const getWeekById = async (id: string) => {
 
   return { status: true, data: week.data }
 }
+
+export const getSelectedWeeks = async (selectedWeeks: Array<number>) => {
+  const weeks = await weeksRepo.getSelectedWeeks(selectedWeeks)
+
+  if (!weeks.status) {
+    return { status: false, error: weeks.error }
+  }
+
+  if (!weeks.data)
+    return {
+      status: false,
+      type: 'weeks.NotExist',
+      error: `Some or all selected weeks: ${selectedWeeks}, does not exist`,
+    }
+
+  return { status: true, data: weeks.data }
+}
