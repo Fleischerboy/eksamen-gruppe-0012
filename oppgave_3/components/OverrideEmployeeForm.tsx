@@ -1,11 +1,41 @@
+import { getEmployees } from "../api/employee"
 import { employees } from "../data/employees"
+import { useAxios } from "../hooks/useAxios"
+import { Result } from "../types"
 
 type overrideEmployeeFormProps = {
     handleRadioChange: (employeeId: number) => void
     day: string | undefined
 }
 
-const overrideEmployeeForm = ({ handleRadioChange, day }: overrideEmployeeFormProps) => {
+const OverrideEmployeeForm = ({ handleRadioChange, day }: overrideEmployeeFormProps) => {
+
+
+    const [loading, data, error, request] = useAxios<Result>(
+        getEmployees({}))
+
+
+    if (loading)
+        return (
+            <main>
+                <h1>Henter data...</h1>
+            </main>
+        )
+
+    if (error)
+        return (
+            <main>
+                <h1>Noe gikk galt...</h1> <h3>Error: {JSON.stringify(error)}</h3>
+            </main>
+        )
+
+    if (!data) {
+        return (
+            <main>
+                <h1>employees data var null</h1>
+            </main>
+        )
+    }
 
     return (
         <>
@@ -14,7 +44,7 @@ const overrideEmployeeForm = ({ handleRadioChange, day }: overrideEmployeeFormPr
             </header>
             <form>
                 <ul className="modal-list">
-                    {employees.map((employee, index) => (
+                    {data.data.employees.map((employee, index) => (
                         <li className="modal-list-item" key={index}>
                             <div className="input-container">
                                 <input onChange={() => handleRadioChange(employee.id)}
@@ -35,4 +65,4 @@ const overrideEmployeeForm = ({ handleRadioChange, day }: overrideEmployeeFormPr
 }
 
 
-export default overrideEmployeeForm;
+export default OverrideEmployeeForm;
