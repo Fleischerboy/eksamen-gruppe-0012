@@ -10,6 +10,10 @@ const SelectWeeks = ({ weekList, handleSelectedWeeks }: SelectWeeksProps) => {
   const [start, setStart] = useState(1)
   const [end, setEnd] = useState(1)
 
+  const validSelection = (start: number, end: number) => {
+    return start <= end
+  }
+
   return (
     <>
       <form
@@ -19,6 +23,7 @@ const SelectWeeks = ({ weekList, handleSelectedWeeks }: SelectWeeksProps) => {
         <label htmlFor="weeks">Velg periode du vil se ansvaret for:</label>
         <select
           id="start"
+          data-testid="start"
           name="start"
           onChange={(e) => setStart(parseInt(e.target.value))}
         >
@@ -31,6 +36,7 @@ const SelectWeeks = ({ weekList, handleSelectedWeeks }: SelectWeeksProps) => {
         <p>til:</p>
         <select
           id="end"
+          data-testid="end"
           name="end"
           onChange={(e) => setEnd(parseInt(e.target.value))}
         >
@@ -40,7 +46,9 @@ const SelectWeeks = ({ weekList, handleSelectedWeeks }: SelectWeeksProps) => {
             </option>
           ))}
         </select>
-        <input type="submit"></input>
+        <button disabled={!validSelection(start, end)} type="submit">
+          Se uker
+        </button>
       </form>
     </>
   )
