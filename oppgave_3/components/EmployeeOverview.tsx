@@ -1,7 +1,7 @@
 import { Day, Employee, Week } from '../types'
 
 type EmployeeProps = {
-  employeeObject: any
+  employeeObject: Employee
 }
 
 const EmployeeOverview = ({ employeeObject }: EmployeeProps) => {

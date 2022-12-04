@@ -4,15 +4,14 @@ import { Day, Employee, Week } from '../types'
 import { MouseEventHandler, useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField'
 
-
 type EmployeeProps = {
-  employeesData: any
+  employeesData: Employee[]
   handleOnClick: (employeeId: string) => void
 }
 
 const EmployeesView = ({ employeesData, handleOnClick }: EmployeeProps) => {
   const [inputText, setInputText] = useState('')
-  let inputHandler = (e) => {
+  let inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     //convert input text to lower case
     var lowerCase = e.target.value.toLowerCase()
     setInputText(lowerCase)
@@ -44,12 +43,12 @@ const EmployeesView = ({ employeesData, handleOnClick }: EmployeeProps) => {
         </div>
         {filteredData.length > 0 ? (
           <ul className="employee-overview">
-            {filteredData.map((employee: any, index: number) => (
+            {filteredData.map((employee: Employee, index: number) => (
               <li key={index} className="employee-list">
                 <h3>Navn: {employee.name}</h3>
                 <button
                   onClick={() => {
-                    handleOnClick(employee.id)
+                    handleOnClick(employee.id.toString())
                   }}
                 >
                   Se mer

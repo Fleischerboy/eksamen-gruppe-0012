@@ -24,6 +24,7 @@ export type Employee = {
   id: number
   name: string
   rules: string
+  days: Day[]
 }
 
 export type WeekDay = {
