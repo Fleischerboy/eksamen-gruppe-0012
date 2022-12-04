@@ -18,7 +18,7 @@
 </ul>
 
 ## API-endepunkter
-#### BASE_URL = http://localhost:3000
+### BASE_URL = http://localhost:3000
 [comment]: <> (api-weeks)
 <details>
  <summary>Weeks</summary>
@@ -54,7 +54,7 @@
   ````JSON
 {
     "status": false,
-    "error": "missing week id, day, dayId or employeeId"
+    "error": "missing week id, day, dayId, overridedEmployeeId or employeeId"
 }
   ````
 

@@ -17,6 +17,40 @@ export const findUnique = async (employeeId: number) => {
                 week: true,
               },
             },
+            overrides: {
+              orderBy: {
+                createdAt: 'desc',
+              },
+              take: 1,
+              select: {
+                employee: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+              },
+            },
+          },
+          /*
+          select: {
+            name: true,
+            week: {
+              select: {
+                week: true,
+              },
+            },
+          },
+          */
+        },
+        overrides: {
+          select: {
+            weekId: true,
+            day: {
+              select: {
+                name: true,
+              },
+            },
           },
         },
       },
@@ -37,6 +71,16 @@ export const getAllEmployees = async () => {
             week: {
               select: {
                 week: true,
+              },
+            },
+          },
+        },
+        overrides: {
+          select: {
+            weekId: true,
+            day: {
+              select: {
+                name: true,
               },
             },
           },

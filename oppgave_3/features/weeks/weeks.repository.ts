@@ -1,4 +1,5 @@
 import prisma from '../../lib/db'
+import { Week } from '../../types'
 
 export const findMany = async () => {
   try {
@@ -85,7 +86,7 @@ export const getWeekById = async (id: string) => {
     return { status: false, error: 'Failed finding week' }
   }
 }
-
+/*
 export const getWeekOverrides = async (weekNumber: number) => {
   try {
     const overrides = await prisma.override.findMany({
@@ -94,7 +95,6 @@ export const getWeekOverrides = async (weekNumber: number) => {
       },
       select: {
         weekId: true,
-        dayName: true,
         employeName: true,
       },
     })
@@ -103,6 +103,7 @@ export const getWeekOverrides = async (weekNumber: number) => {
     return { status: false, error: 'Failed finding overrides' }
   }
 }
+*/
 
 export const getSelectedWeeks = async (selectedWeeks: Array<number>) => {
   try {

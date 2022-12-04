@@ -12,6 +12,10 @@ export const getAllWeeks = async (
   if (weeks.error)
     return res.status(500).json({ status: false, error: weeks.error })
 
+  if (!weeks.data) {
+    return res.status(404).json({ status: false, error: weeks.error as string })
+  }
+
   const weeksData = {
     weeks: weeks.data,
   }
@@ -58,6 +62,7 @@ export const getSelectedWeeks = async (
   req: NextApiRequest,
   res: NextApiResponse<Result>
 ) => {
+  console.log('hh')
   const start =
     req.query.start instanceof Array
       ? req.query.start.find((i) => i.includes('start'))

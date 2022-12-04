@@ -1,11 +1,15 @@
-import { Data, Error, Result } from '../../types/index'
-import { overrideLunchDay } from './days/days.service'
 import * as weeksRepo from './weeks.repository'
 
 export const getAllWeeks = async () => {
   const weeks = await weeksRepo.findMany()
 
   if (!weeks.status) return { status: false, error: weeks.error }
+
+  if (!weeks.data)
+    return {
+      status: false,
+      error: 'no weeks found',
+    }
 
   return { status: true, data: weeks.data }
 }
