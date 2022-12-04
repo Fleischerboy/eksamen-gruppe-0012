@@ -40,9 +40,11 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   h3 {
     font-size: 2rem;
   }
+
   span {
     font-size: 2rem;
   }
@@ -249,7 +251,14 @@ hr {
   label {
     text-transform: capitalize;
   }
+
   input {
     min-width: 100%;
   }
+}
+
+
+.step-in {
+  color: red;
+  font-weight: 600;
 }

@@ -1,4 +1,3 @@
-import { employees } from './../../data/employees'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import * as employeeService from '../employees/employees.service'
 import { Result } from '../../types'

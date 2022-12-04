@@ -46,7 +46,7 @@ const EmployeesView = ({ employeesData, handleOnClick }: EmployeeProps) => {
             {filteredData.map((employee: Employee, index: number) => (
               <li key={index} className="employee-list">
                 <h3>Navn: {employee.name}</h3>
-                <button
+                <button className="primary-btn"
                   onClick={() => {
                     handleOnClick(employee.id.toString())
                   }}

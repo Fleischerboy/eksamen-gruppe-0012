@@ -23,6 +23,7 @@ const Week = () => {
   )
 
   const [editEmployee, setEditEmployee] = useState<number | null>(null)
+  const [overridedEmployeeId, setOverridedEmployeeId] = useState<number>()
   const [dayId, setDayId] = useState<string>()
   const [day, setDay] = useState<string>();
   const [openModal, setOpenModal] = useState(false)
@@ -47,11 +48,12 @@ const Week = () => {
   }
 
   const handleOverrideInput = async () => {
-    if (!(editEmployee && day && dayId)) return
+    if (!(editEmployee && day && dayId && overridedEmployeeId)) return
     await axios(overrideEmployee(id, day, {
       data: {
         dayId: dayId,
-        employeeId: editEmployee
+        employeeId: editEmployee,
+        overridedEmployeeId: overridedEmployeeId
       }
     })).then((res) => {
       console.log(res)
@@ -104,7 +106,7 @@ const Week = () => {
                     <button
                       data-testid="edit-lunch-btn"
                       className="primary-btn"
-                      onClick={() => { setOpenModal(!openModal); setDay(day.name); setDayId(day.id) }}
+                      onClick={() => { setOpenModal(!openModal); setDay(day.name); setDayId(day.id); setOverridedEmployeeId(day.employee?.id) }}
                     >
                       rediger
                     </button>

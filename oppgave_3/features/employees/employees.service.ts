@@ -1,4 +1,3 @@
-import { employees } from './../../data/employees'
 import * as employeeRepo from './employees.repository'
 
 export const getEmployeeById = async (id: string) => {

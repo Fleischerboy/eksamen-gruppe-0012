@@ -38,7 +38,7 @@ Table override {
   id String [pk]
   createdAt DateTime [default: `now()`, not null]
   weekId Int [not null]
-  dayId String [not null]
+  dayId String [unique, not null]
   employeeId Int [not null]
   employee employee [not null]
   day day [not null]

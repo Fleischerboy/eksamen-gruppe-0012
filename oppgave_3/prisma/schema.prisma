@@ -12,10 +12,10 @@ datasource db {
 }
 
 model Employee {
-  id       Int        @id @default(autoincrement())
-  name     String
-  rules    String
-  days     Day[]
+  id        Int        @id @default(autoincrement())
+  name      String
+  rules     String
+  days      Day[]
   overrides Override[]
 
   @@map("employee")
@@ -52,13 +52,13 @@ model Year {
 }
 
 model Override {
-  id         String    @id @default(cuid())
-  createdAt  DateTime  @default(now())
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
   weekId     Int
-  dayId      String
+  dayId      String   @unique
   employeeId Int
   employee   Employee @relation(fields: [employeeId], references: [id])
-  day        Day       @relation(fields: [dayId], references: [id])
+  day        Day      @relation(fields: [dayId], references: [id])
 
   @@map("override")
 }
