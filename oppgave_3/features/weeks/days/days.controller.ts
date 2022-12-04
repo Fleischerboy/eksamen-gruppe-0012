@@ -25,7 +25,7 @@ export const overrideLunchDay = async (
   if (!(weekId && day && employeeId && dayId)) {
     return res.status(400).json({
       status: false,
-      error: 'missing week id, day, dayId or employeId',
+      error: 'missing week id, day, dayId or employeeId',
     })
   }
 
@@ -33,8 +33,8 @@ export const overrideLunchDay = async (
 
   if (!isWeekDay(dayName)) {
     return res
-      .status(400)
-      .json({ status: false, error: `${dayName} is not a day` })
+      .status(404)
+      .json({ status: false, error: `${dayName} is not a week day or day` })
   }
 
   const override = await daysService.overrideLunchDay(weekId, dayId, employeeId)
@@ -49,5 +49,5 @@ export const overrideLunchDay = async (
     override: override.data,
   }
 
-  return res.status(200).json({ status: true, data: overrideData })
+  return res.status(201).json({ status: true, data: overrideData })
 }

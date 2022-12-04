@@ -29,7 +29,6 @@ const Week = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      console.log("1")
       request()
     }
   }, [router.isReady])
@@ -49,7 +48,7 @@ const Week = () => {
 
   const handleOverrideInput = async () => {
     if (!(editEmployee && day && dayId)) return
-    await axios(overrideEmployee(id, day, { // TODO har ikke mulighet til å bruke api hook igjen i samme komponent, men tenker at dette funker iværtfall for nå
+    await axios(overrideEmployee(id, day, {
       data: {
         dayId: dayId,
         employeeId: editEmployee

@@ -6,10 +6,6 @@ export default async function handler(
   res: NextApiResponse<Result>
 ) {
   switch (req.method?.toLowerCase()) {
-    case 'get': {
-      // TODO get one day.
-      return res.status(200)
-    }
     case 'post': {
       await dayController.overrideLunchDay(req, res)
       break

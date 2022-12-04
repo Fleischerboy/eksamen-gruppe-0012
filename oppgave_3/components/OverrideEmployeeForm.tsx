@@ -48,7 +48,7 @@ const OverrideEmployeeForm = ({ handleRadioChange, day }: overrideEmployeeFormPr
                         <li className="modal-list-item" key={index}>
                             <div className="input-container">
                                 <input onChange={() => handleRadioChange(employee.id)}
-                                    className="radio-input" type="radio" id={employee.id.toString()}
+                                    className="radio-input" type="radio" id={employee.id}
                                     name="employee"
                                     value={employee.id} />
                                 <label htmlFor={employee.id.toString()}>{employee.name}</label>
