@@ -38,6 +38,7 @@ export const exportLunchList = async (
     return {
       status: true,
       data: res
+        .status(200)
         .setHeader(
           'Content-Type',
           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'

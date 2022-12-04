@@ -13,6 +13,7 @@
 <li>400: Dårlig request (Mangler noe i requesten til å fullføre)</li>
 <li>404: Fant ikke ressurs</li>
 <li>405: Http-methode ikke lov/støtter ikke denne http-metoden</li>
+<li>415: </li>
 <li>500: Intern error på server/noe feil som oppsto på server-siden </li>
 </ul>
 
@@ -89,10 +90,10 @@
 
 * Tilgjengelig verb/http-methode: [GET]
 * Status koder: 200, 405 og 500 (Se format til responsene under nedtrekks-funksjonen)
-* API-endepunkter som blir brukt på urlen/siden "BASE_URL/weeks" er:
+* API-endepunkter som blir brukt på urlen/siden "BASE_URL" er:
     - BASE_URL/api/weeks
 * tsx-fil finnes inni prosjekt koden: pages/weeks/index.tsx
-* På denne siden vil klientne kunne se hele lunch informasjonen for et helt år. Man kan trykke "Se dager" per uke se alle dager, hvem ansatt som har ansvar for en git dag og hva maten er den dagen. Kan tykke på en ansatt i listen for å se videre informasjon. Øverst på siden vil man se små grå bokser med uke tall og kan da trykke på en for å få videre informasjon.
+* På denne siden vil klientne kunne se hele lunch informasjonen for et helt år. Man kan trykke "Se dager" per uke se alle dager, hvem ansatt som har ansvar for en git dag og hva maten er den dagen. Kan tykke på en ansatt i listen for å se videre informasjon. Øverst på siden vil man se små grå bokser med uke tall og kan da trykke på en for å få videre informasjon. Finnes også en knapp for å laste ned/eksportere lunsjlisten til et excel format.
 
 
 <details>
@@ -396,7 +397,7 @@
 
 * Tilgjengelig verb/http-methode: [GET]
 * Status koder: 200, 405 (Se format til responsene under nedtrekks-funksjonen)
-* Endepunkt bli brukt på urlen/siden: ...
+* Endepunkt bli brukt på urlen/siden: ...(lage en knapp for dette et sted?)
 <details>
   <summary>Response format for /api/demo</summary>
 
@@ -430,15 +431,46 @@
 
 #### Eksportere lunsj dataen til excel format: /api/excel/lunch
 
-* Tilgjengelig verb/http-methode:
-* Status koder: (Se format til responsene under nedtrekks-funksjonen)
-* tsx-fil finnes inni prosjekt koden:
-* Endepunkt bli brukt på urlen/siden: - På denne siden kan klientene:
+* Tilgjengelig verb/http-methode: [GET]
+* Status koder: 200, 404, 415, 500 (Se format til responsene under nedtrekks-funksjonen)
+* Endepunkt bli brukt på urlen/siden "BASE_URL"
 <details>
-  <summary>Response format for</summary>
+  <summary>Response format for /api/excel/lunch</summary>
 
+
+#### Status kode: 200
+```
+laster ned lunch.xlsx filen til din maskin.
+
+```
+
+#### Status kode: 404
 ```JSON
+{ 
+  "status": false,
+  "error": "File not found"
+}
+```
 
+#### Status kode: 415
+```JSON
+{
+    "status": false,
+    "error": "Unsupported Media Type/format not supported or  missing content-type"
+}
+```
+
+#### Status kode: 500
+```JSON
+{
+    "status": false,
+    "error": "Failed finding weeks"
+}
+or
+{ 
+    "status": false,
+    "error": "Failed creating excel file" 
+}
 ```
 
  </details>
