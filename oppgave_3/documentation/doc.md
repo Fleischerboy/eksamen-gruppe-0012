@@ -511,6 +511,7 @@
 - Blir brukt på siden hvor en får oversikt over ansatte (BASE_URL/employees)
 - tsx-fil finnes inni prosjekt koden: pages/emlpoyees/index.tsx
 - På denne siden kan man få en oversikt over alle ansatte og oppdatere en ansatt
+
 <details>
   <summary>Response format for</summary>
 
@@ -586,6 +587,92 @@
 
  </details>
 
+
+#### Lage en ansatt: /api/employees
+
+- Tilgjengelig verb/http-methode: [GET], [POST]
+- Status koder: 200, 404, 500 
+- http://localhost:3000/employees/new 
+- På denne siden kan man opprette en ansatt ved å skrive inn navn til den som blir ansatt og dager 
+
+<details>
+  <summary>Response format for</summary>
+
+```JSON
+
+
+```
+
+##### Status kode: 404
+
+```JSON
+{
+    "status": false,
+    "error": "employee.NotCreated"
+}
+```
+
+##### Status kode: 500
+
+```JSON
+{
+    "status": false,
+    "error": "failed creating employee"
+}
+```
+
+ </details>
+
+
+
+
+#### Oppdatere en ansatt: /api/employees/:id
+
+- Tilgjengelig verb/http-methode: [GET], [PUT]
+- Status koder: 200, 400, 404, 500 
+- Blir brukt på http://localhost:3000/employees/(Employee id)
+- På denne siden kan man oppdatere ansatt navn også blir det nye navnet vist på kalenderen
+
+<details>
+  <summary>Response format for</summary>
+
+```JSON
+
+
+```
+
+##### Status kode: 400
+
+```JSON
+{
+    "status": false,
+    "error": "missing employee id"
+}
+```
+
+##### Status kode: 404
+
+```JSON
+{
+    "status": false,
+    "error": "employee.error"
+}
+```
+
+##### Status kode: 500
+
+```JSON
+{
+    "status": false,
+    "error": "employee.error"
+}
+```
+
+ </details>
+
+
+
+
 </details>
 
 [comment]: <> (api-demo)
@@ -607,9 +694,7 @@
 ```JSON
 {
     "status": true,
-    "data": {
-        "msg": "seed script executed"
-    }
+    "msg": "seed script executed"
 }
 ```
 
@@ -677,6 +762,10 @@ or
     "error": "Failed creating excel file"
 }
 ```
+
+
+### Lager en ansatt /api/employees/:id
+
 
  </details>
 
