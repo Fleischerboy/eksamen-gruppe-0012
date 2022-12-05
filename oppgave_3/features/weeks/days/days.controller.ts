@@ -49,7 +49,7 @@ export const overrideLunchDay = async (
 
     if (overridedEmployeeId === employeeId) {
       const msg = {
-        message: 'workday back to original employee',
+        message: 'Workday back to original employee',
       }
       return res.status(200).json({ status: true, data: msg })
     }

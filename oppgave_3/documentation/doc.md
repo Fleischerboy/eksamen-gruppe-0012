@@ -11,7 +11,7 @@
 <li>400: Dårlig request (Mangler noe i requesten til å fullføre)</li>
 <li>404: Fant ikke ressurs</li>
 <li>405: Http-methode ikke lov/støtter ikke denne http-metoden</li>
-<li>415: </li>
+<li>415: Støtter ikke media typen (mangler feks content-type)</li>
 <li>500: Intern error på server/noe feil som oppsto på server-siden </li>
 </ul>
 
@@ -31,10 +31,20 @@
    
 ### Lage en ansatt overskrivelse på en gitt dag: /api/weeks/:id/:dag 
 * Tilgjengelig verb/http-methode: [POST]
-* Status koder: 201, 400, 404, 405, 500 (Se format til responsene under nedtrekks-funksjonen)
+* Status koder: 200, 201, 400, 404, 405, 500 (Se format til responsene under nedtrekks-funksjonen)
+* Endepunkt kan bli brukt på siden: BASE_URL/weeks/:id
+* Ved å trykke rediger-knapp kan man endre ansatt som skal være ansvarlig for lunsj dagen.
 <details>
   <summary>Response format for /api/weeks/:id/:dag</summary>
 
+
+##### Status kode 200:
+```JSON
+{ 
+  "status": true, 
+  "data": "Workday back to original employee"
+}
+```
 ##### Status kode 201:
 
 ```JSON
@@ -96,8 +106,7 @@
 
 - Tilgjengelig verb/http-methode: [GET]
 - Status koder: 200, 405 og 500 (Se format til responsene under nedtrekks-funksjonen)
-- API-endepunkter som blir brukt på urlen/siden "BASE_URL" er:
-  - BASE_URL/api/weeks
+- API-endepunkt blir brukt på "BASE_URL"
 - tsx-fil finnes inni prosjekt koden: pages/weeks/index.tsx
 - På denne siden vil klientne kunne se hele lunch informasjonen for et helt år. Man kan trykke "Se dager" per uke se alle dager, hvem ansatt som har ansvar for en git dag og hva maten er den dagen. Kan tykke på en ansatt i listen for å se videre informasjon. Øverst på siden vil man se små grå bokser med uke tall og kan da trykke på en for å få videre informasjon. Finnes også en knapp for å laste ned/eksportere lunsjlisten til et excel format.
 
@@ -225,9 +234,7 @@
 
 - Tilgjengelig verb/http-methode: [GET]
 - Status koder: 200, 400, 404, 405 og 500 (Se format til responsene under nedtrekks-funksjonen)
-- API-endepunkter som blir brukt på urlen/siden "BASE_URL/weeks/:id" er:
-  - BASE_URL/api/weeks/:id
-  - BASE_URL/api/weeks/:id/:day
+- API-endepunkt blir brukt på siden/url: "BASE_URL/weeks/:id"
 - tsx-fil finnes inni prosjekt koden: pages/weeks/[id]/index.tsx
 - På denne siden kan klientene se alle lunsj dager knyttet til valgt uke. Her har man muligheten til å trykke på rediger knapp for å endre hvem som er ansvarlig for lunsjen på en gitt dag.
 
@@ -350,13 +357,14 @@
 
  </details>
 
-</details>
+
 
 #### Henter utvalgte uker: /api/weeks/selected/[start]/[end]
 
 - Tilgjengelig verb/http-methode: [GET]
 - Status koder: 200, 400, 405 og 500 (Se format til responsene under nedtrekks-funksjonen)
 - Blir brukt på siden for å vise utvalgte uker
+- API-endepunkt kan bli brukt via siden/url "BASE_URL"
 - tsx-fil finnes inni prosjekt koden: pages/weeks/selectedweeks/[start]/[end]/index.tsx
 - På denne siden kan en bruker få oversikt over utvalgte uker.
 
@@ -500,7 +508,7 @@
 
 - Tilgjengelig verb/http-methode: [GET], [POST]
 - Status koder: 200, 405, 500 (Se format til responsene under nedtrekks-funksjonen)
-- Blir brukt på siden hvor en får oversikt over ansatte
+- Blir brukt på siden hvor en får oversikt over ansatte (BASE_URL/employees)
 - tsx-fil finnes inni prosjekt koden: pages/emlpoyees/index.tsx
 - På denne siden kan man få en oversikt over alle ansatte og oppdatere en ansatt
 <details>
@@ -562,13 +570,13 @@
 
  </details>
 
-</details>
 #### Hente en ansatt: /api/employees/:id
 
-- Tilgjengelig verb/http-methode:
+- Tilgjengelig verb/http-methode: [GET], [PUT]
 - Status koder: (Se format til responsene under nedtrekks-funksjonen)
 - tsx-fil finnes inni prosjekt koden:
-- Endepunkt bli brukt på urlen/siden: - På denne siden kan klientene:
+- Endepunkt bli brukt på urlen/siden: 
+- På denne siden kan klientene:
 <details>
   <summary>Response format for</summary>
 
@@ -589,7 +597,8 @@
 
 - Tilgjengelig verb/http-methode: [GET]
 - Status koder: 200, 405 (Se format til responsene under nedtrekks-funksjonen)
-- Endepunkt bli brukt på urlen/siden: ...(lage en knapp for dette et sted?)
+- API-endepunkt kan ikke bli brukt via en side og kan da skrives manuelt i nettleseren.
+- endepunkt vil slette alt av data i databasen og fylle inn eksempeldataen git i oppgaven.
 <details>
   <summary>Response format for /api/demo</summary>
 
@@ -624,7 +633,7 @@
 
 - Tilgjengelig verb/http-methode: [GET]
 - Status koder: 200, 404, 415, 500 (Se format til responsene under nedtrekks-funksjonen)
-- Endepunkt bli brukt på urlen/siden "BASE_URL"
+- API-endepunkt kan bli brukt via urlen/siden "BASE_URL" ved å trykke "eksporter lunsj listen" knapp.
 <details>
   <summary>Response format for /api/excel/lunch</summary>
 
