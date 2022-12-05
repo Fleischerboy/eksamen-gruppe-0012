@@ -30,7 +30,6 @@
 ### Lage en ansatt overskrivelse på en gitt dag: /api/weeks/:id/:dag 
 * Tilgjengelig verb/http-methode: [POST]
 * Status koder: 201, 400, 404, 405, 500 (Se format til responsene under nedtrekks-funksjonen)
-  
 <details>
   <summary>Response format for /api/weeks/:id/:dag</summary>
 

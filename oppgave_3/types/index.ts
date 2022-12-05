@@ -25,6 +25,7 @@ export type Employee = {
   name: string
   rules: string
   days: Day[]
+  overrides: Employee[]
 }
 
 export type WeekDay = {
