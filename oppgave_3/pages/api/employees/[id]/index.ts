@@ -16,11 +16,6 @@ export default async function handler(
     case 'put':
       await employeeController.updateEmployee(req, res)
       break
-
-    case 'delete':
-      // return res.status(200).json({})
-      break
-
     default:
       return res.status(405).json({
         status: false,
