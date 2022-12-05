@@ -8,7 +8,10 @@ export default async function handler(
   switch (req.method?.toLowerCase()) {
     case 'get':
       await seedScript
-      return res.status(200).json({ status: true, msg: `seed script executed` })
+      const message = {
+        msg: 'seed script executed',
+      }
+      return res.status(200).json({ status: true, data: message })
     default:
       return res.status(405).json({
         status: false,

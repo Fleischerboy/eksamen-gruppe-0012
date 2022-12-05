@@ -607,7 +607,9 @@
 ```JSON
 {
     "status": true,
-    "msg": "seed script executed"
+    "data": {
+        "msg": "seed script executed"
+    }
 }
 ```
 
