@@ -42,6 +42,14 @@ export const createEmployee = async (
   res: NextApiResponse<Result>
 ) => {
   const { name, rules } = req.body
+
+  if (!(name && rules)) {
+    return res.status(400).json({
+      status: false,
+      error: 'missing name or rules',
+    })
+  }
+
   const employee = await employeeService.createEmployee({ name, rules })
 
   if (!employee?.status) {
@@ -62,7 +70,7 @@ export const createEmployee = async (
   const employeeData = {
     employee: employee.data,
   }
-  return res.status(200).json({ status: true, data: employeeData })
+  return res.status(201).json({ status: true, data: employeeData })
 }
 
 export const updateEmployee = async (
@@ -74,11 +82,15 @@ export const updateEmployee = async (
       ? req.query.id.find((i) => i.includes('id'))
       : req.query.id
 
-  if (!id)
-    return res.status(400).json({ status: false, error: 'missing employee id' })
   const { name, rules } = req.body
+
+  if (!(id && name && rules)) {
+    return res
+      .status(400)
+      .json({ status: false, error: 'missing employee id, name or rules' })
+  }
+
   const employee = await employeeService.updateEmployee(id, { name, rules })
-  console.log('controller', id, name)
 
   if (!employee?.status) {
     switch (employee?.type) {

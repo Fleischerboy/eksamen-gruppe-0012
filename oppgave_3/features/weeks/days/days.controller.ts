@@ -24,7 +24,6 @@ export const overrideLunchDay = async (
   const overridedEmployeeId = req.body.overridedEmployeeId
   const dayId = req.body.dayId
 
-  console.log(overridedEmployeeId, employeeId, dayId)
   if (!(weekId && day && employeeId && dayId && overridedEmployeeId)) {
     return res.status(400).json({
       status: false,
@@ -37,7 +36,7 @@ export const overrideLunchDay = async (
   if (!isWeekDay(dayName)) {
     return res
       .status(404)
-      .json({ status: false, error: `${dayName} is not a week day or day` })
+      .json({ status: false, error: `${dayName} is not a workday` })
   }
 
   // TODO CHECK IF USERS EXIST

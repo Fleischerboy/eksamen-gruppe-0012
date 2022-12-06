@@ -76,7 +76,7 @@
 ```JSON
 {
   "status": false,
-  "error": "lørdag is not a week day or day"
+  "error": "lørdag is not a workday"
 }
 ```
 
@@ -106,9 +106,9 @@
 
 - Tilgjengelig verb/http-methode: [GET]
 - Status koder: 200, 405 og 500 (Se format til responsene under nedtrekks-funksjonen)
-- API-endepunkt blir brukt på "BASE_URL"
+- API-endepunkt blir brukt på siden/url "BASE_URL"
 - tsx-fil finnes inni prosjekt koden: pages/weeks/index.tsx
-- På denne siden vil klientne kunne se hele lunch informasjonen for et helt år. Man kan trykke "Se dager" per uke se alle dager, hvem ansatt som har ansvar for en git dag og hva maten er den dagen. Kan tykke på en ansatt i listen for å se videre informasjon. Øverst på siden vil man se små grå bokser med uke tall og kan da trykke på en for å få videre informasjon. Finnes også en knapp for å laste ned/eksportere lunsjlisten til et excel format.
+- På denne siden vil klientne kunne se hele lunsj informasjonen for et helt år. Man kan trykke "Se dager" per uke se alle dager, hvem ansatt som har ansvar for en git dag og hva maten er den dagen. Kan tykke på en ansatt i listen for å se videre informasjon. Øverst på siden vil man se 52 små grå bokser med uke tall og kan da trykke på en for å få videre informasjon. Finnes også en knapp for å laste ned/eksportere lunsjlisten til et excel format.
 
 <details>
   <summary>Response format for api/weeks</summary>
@@ -496,7 +496,7 @@
 ```
 
  </details>
-
+<br>
 </details>
 
 [comment]: <> (api-employees)
@@ -504,17 +504,18 @@
 <details>
   <summary>Employees</summary>
 
-#### Henter alle ansatte: /api/employees
+#### Hente alle ansatte og opprette nye ansatte: /api/employees
 
 - Tilgjengelig verb/http-methode: [GET], [POST]
-- Status koder: 200, 405, 500 (Se format til responsene under nedtrekks-funksjonen)
-- Blir brukt på siden hvor en får oversikt over ansatte (BASE_URL/employees)
+- Status koder: 200, 201, 400, 405, 500 (Se format til responsene under nedtrekks-funksjonen)
+- API-endepunkt blir brukt på siden/url BASE_URL/employees
 - tsx-fil finnes inni prosjekt koden: pages/emlpoyees/index.tsx
-- På denne siden kan man få en oversikt over alle ansatte og oppdatere en ansatt
+- På denne siden kan man få en oversikt over alle ansatte og lage nye ansatter i applikasjonen. søkefelt for å søke etter en git ansatt.
 
 <details>
-  <summary>Response format for</summary>
+  <summary>Response format for /api/employees</summary>
 
+##### Status kode: 200
 ```JSON
 {
   "status": true,
@@ -551,6 +552,15 @@
 
 ```
 
+##### Status kode: 400
+
+```JSON
+{
+    "status": false,
+    "error": "missing name or rules"
+}
+```
+
 ##### Status kode: 405
 
 ```JSON
@@ -563,117 +573,221 @@
 ##### Status kode: 500
 
 ```JSON
+[GET]
 {
     "status": false,
-    "error": "No employees found" or "failed creating employee"
+    "error": "Failed finding employees"
+}
+[POST]
+{
+    "status": false,
+    "error": "Failed creating employee"
 }
 ```
 
  </details>
 
-#### Hente en ansatt: /api/employees/:id
+#### Hente og oppdatere en ansatt: /api/employees/:id
 
 - Tilgjengelig verb/http-methode: [GET], [PUT]
-- Status koder: (Se format til responsene under nedtrekks-funksjonen)
-- tsx-fil finnes inni prosjekt koden:
-- Endepunkt bli brukt på urlen/siden: 
-- På denne siden kan klientene:
+- Status koder: 200, 400, 405, 500 (Se format til responsene under nedtrekks-funksjonen)
+- API-endepunkt blir brukt på urlen/siden "BASE_URl/employees/:id" 
+- tsx-fil finnes inni prosjekt koden: pages/employees/:id/index.tsx
+- På denne siden vil man få en oversikt over alle jobbdager og overskrivelser til en git ansatt. Hvis det er noen overskrivelser vil det stå hvem som stepper in under git uke og dag.
 <details>
-  <summary>Response format for</summary>
+  <summary>Response format for /api/employees/:id</summary>
+
+ ##### Status kode: 200 [GET]
+```JSON
+{
+  "status": true,
+  "data": {
+    "employee": {
+      "id": 1,
+      "name": "Trude",
+      "rules": "days:123",
+      "days": [
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 1
+          },
+          "overrides": [
+            {
+              "employee": {
+                "id": 8,
+                "name": "Simen"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 3
+          },
+          "overrides": []
+        },
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 6
+          },
+          "overrides": []
+        },
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 10
+          },
+          "overrides": []
+        },
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 12
+          },
+          "overrides": []
+        },
+        {
+          "name": "Tirsdag",
+          "week": {
+            "week": 18
+          },
+          "overrides": []
+        },
+        {
+          "name": "Tirsdag",
+          "week": {
+            "week": 20
+          },
+          "overrides": []
+        },
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 22
+          },
+          "overrides": []
+        },
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 24
+          },
+          "overrides": []
+        },
+        {
+          "name": "Tirsdag",
+          "week": {
+            "week": 26
+          },
+          "overrides": []
+        },
+        {
+          "name": "Tirsdag",
+          "week": {
+            "week": 34
+          },
+          "overrides": []
+        },
+        {
+          "name": "Tirsdag",
+          "week": {
+            "week": 36
+          },
+          "overrides": []
+        },
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 38
+          },
+          "overrides": []
+        },
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 46
+          },
+          "overrides": []
+        },
+        {
+          "name": "Mandag",
+          "week": {
+            "week": 48
+          },
+          "overrides": []
+        },
+        {
+          "name": "Onsdag",
+          "week": {
+            "week": 50
+          },
+          "overrides": []
+        }
+      ],
+      "overrides": [
+        {
+          "weekId": 3,
+          "day": {
+            "name": "Torsdag"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+##### Status kode: 200 [PUT]
 
 ```JSON
+{
+    "status": true,
+    "data": {
+        "employee": {
+            "id": 1,
+            "name": "philip",
+            "rules": "*"
+        }
+    }
+}
+```
+##### Status kode: 400 [POST]
+```JSON
+{
+    "status": false,
+    "error": "missing employee id, name or rules"
+}
+```
 
+##### Status kode: 405
+```JSON
+{
+    "status": false,
+    "error": "Method not allowed"
+}
+```
+
+ ##### Status kode: 500 
+```JSON
+[GET]
+{
+    "status": false,
+    "error": "Failed finding employee"
+}
+[PUT]
+{
+    "status": false,
+    "error": "Failed updating employee"
+}
 ```
 
  </details>
-
-
-#### Lage en ansatt: /api/employees
-
-- Tilgjengelig verb/http-methode: [GET], [POST]
-- Status koder: 200, 404, 500 
-- http://localhost:3000/employees/new 
-- På denne siden kan man opprette en ansatt ved å skrive inn navn til den som blir ansatt og dager 
-
-<details>
-  <summary>Response format for</summary>
-
-```JSON
-
-
-```
-
-##### Status kode: 404
-
-```JSON
-{
-    "status": false,
-    "error": "employee.NotCreated"
-}
-```
-
-##### Status kode: 500
-
-```JSON
-{
-    "status": false,
-    "error": "failed creating employee"
-}
-```
-
- </details>
-
-
-
-
-#### Oppdatere en ansatt: /api/employees/:id
-
-- Tilgjengelig verb/http-methode: [GET], [PUT]
-- Status koder: 200, 400, 404, 500 
-- Blir brukt på http://localhost:3000/employees/(Employee id)
-- På denne siden kan man oppdatere ansatt navn også blir det nye navnet vist på kalenderen
-
-<details>
-  <summary>Response format for</summary>
-
-```JSON
-
-
-```
-
-##### Status kode: 400
-
-```JSON
-{
-    "status": false,
-    "error": "missing employee id"
-}
-```
-
-##### Status kode: 404
-
-```JSON
-{
-    "status": false,
-    "error": "employee.error"
-}
-```
-
-##### Status kode: 500
-
-```JSON
-{
-    "status": false,
-    "error": "employee.error"
-}
-```
-
- </details>
-
-
-
-
+<br>
 </details>
+
 
 [comment]: <> (api-demo)
 
@@ -708,7 +822,7 @@
 ```
 
  </details>
-
+<br>
 </details>
 
 [comment]: <> (api-excel)
@@ -756,38 +870,9 @@ laster ned lunch.xlsx filen til din maskin.
     "status": false,
     "error": "Failed finding weeks"
 }
-or
+Eller
 {
     "status": false,
     "error": "Failed creating excel file"
 }
 ```
-
-
-### Lager en ansatt /api/employees/:id
-
-
- </details>
-
-</details>
-
-<!-- 
-[comment]: <> (format-kopi atm)
-#### format
-
-* Tilgjengelig verb/http-methode:
-* Status koder: (Se format til responsene under nedtrekks-funksjonen)
-* tsx-fil finnes inni prosjekt koden:
-* Endepunkt bli brukt på urlen/siden: - På denne siden kan klientene:
-  <details>
-
-    <summary>Response format for</summary>
-
-  
-
-```JSON
-
-  ```
-
-   </details>
---!>

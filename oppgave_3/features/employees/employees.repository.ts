@@ -1,5 +1,3 @@
-import { employees } from './../../data/employees'
-import lunchList from '../../data/lunch.json'
 import db from '../../lib/db'
 
 export const findUnique = async (employeeId: number) => {
@@ -89,7 +87,7 @@ export const getAllEmployees = async () => {
     })
     return { status: true, data: employees }
   } catch (error) {
-    return { status: false, error: 'No employees found' }
+    return { status: false, error: 'Failed finding employees' }
   }
 }
 
