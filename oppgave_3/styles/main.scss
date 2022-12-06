@@ -1,4 +1,4 @@
-@import "./globals.scss";
+@import './globals.scss';
 
 $btn-primary: #e80f5b;
 
@@ -52,6 +52,13 @@ main {
 
 .select-weeks {
   display: flex;
+  margin: 20px 0px 20px 0px;
+  p {
+    font-size: 2rem;
+  }
+  label {
+    font-size: 2rem;
+  }
 }
 
 .small-week-cards-list {
@@ -256,7 +263,6 @@ hr {
     min-width: 100%;
   }
 }
-
 
 .step-in {
   color: red;

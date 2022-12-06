@@ -100,6 +100,7 @@ const Home: NextPage = () => {
           eksporter lunsj listen
         </button>
         <button
+          className="primary-btn"
           onClick={() => {
             goToEmployees()
           }}
