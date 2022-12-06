@@ -75,6 +75,13 @@ export const getSelectedWeeks = async (
     return res.status(400).json({ status: false, error: "missing week id's" })
   }
 
+  if (start > end) {
+    return res.status(400).json({
+      status: false,
+      error: 'Invalid input start week cannot be larger then end week',
+    })
+  }
+
   const weekList = []
 
   for (let index = parseInt(start); index <= parseInt(end); index++) {

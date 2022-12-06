@@ -475,7 +475,14 @@
 "status": false,
 "error": "missing week id's"
 }
+
+{
+ "status": false,
+ "error": "Invalid input start week cannot be larger then end week"
+}
 ```
+
+
 
 ##### Status kode: 405
 
