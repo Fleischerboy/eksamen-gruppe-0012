@@ -1,6 +1,5 @@
-import { findMany } from './weeks.repository'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Data, Error, Result } from '../../types/index'
+import { Result } from '../../types/index'
 import * as weekService from './weeks.service'
 
 export const getAllWeeks = async (
@@ -62,7 +61,6 @@ export const getSelectedWeeks = async (
   req: NextApiRequest,
   res: NextApiResponse<Result>
 ) => {
-  console.log('hh')
   const start =
     req.query.start instanceof Array
       ? req.query.start.find((i) => i.includes('start'))

@@ -1,4 +1,3 @@
-import { checkIfDayHasOverrides } from './days.service'
 import prisma from '../../../lib/db'
 
 export const deletePreviousOverrideByDayId = async (dayId: string) => {

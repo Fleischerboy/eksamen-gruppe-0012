@@ -1,5 +1,4 @@
 import * as repoDays from '../days/days.repository'
-import * as employeeService from '../../employees/employees.service'
 
 export const deletePreviousOverride = async (dayId: string) => {
   const deleteLastOverride = await repoDays.deletePreviousOverrideByDayId(dayId)
