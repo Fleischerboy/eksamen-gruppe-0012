@@ -16,7 +16,7 @@ npm run dev
 some extras:
 ```bash
 run tests: npm run test
-prisma studio: npm run prisma:generate 
+start prisma studio: npx prisma studio 
 run seed script: npm run prisma:seed or type this in your web browser: http://localhost:3000/api/demo
 ```
 
