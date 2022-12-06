@@ -2,7 +2,7 @@
 import excel from 'exceljs'
 import { Day, Week } from '../../types'
 
-export const createExcelFileOfLunchList = async (lunchListData: Week[]) => {
+export const createExcelFileOfLunchList = async (lunchListData: any) => {
   const workbook = new excel.Workbook()
   const worksheet = workbook.addWorksheet('My Lunch Sheet')
 
@@ -16,7 +16,7 @@ export const createExcelFileOfLunchList = async (lunchListData: Week[]) => {
   ]
 
   // Looping through User data
-  lunchListData.forEach((week) => {
+  lunchListData.forEach((week: Week) => {
     week.week = week.week
     week.days.forEach((day: Day) => {
       worksheet.addRow({
