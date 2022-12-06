@@ -1,6 +1,4 @@
 
-<<<<<<< HEAD
-=======
 En applikasjon for lunsj-system
 
 ### API-routes/endpoints - Versjon 1
@@ -40,4 +38,3 @@ En applikasjon for lunsj-system
     - pages/employees/new
     - endepunkt skal bli kalt/brukt på url/siden: BASE_URL/employees/new
 ```
->>>>>>> 22350add54bac412ee59fae2a1e7b7442b9bc622

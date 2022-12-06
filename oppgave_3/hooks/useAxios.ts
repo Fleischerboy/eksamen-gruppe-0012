@@ -37,8 +37,8 @@ export const useAxios = <T>(
       })
       .catch((error) => {
         const statusCode = error.message
-
         setError(`${statusCode}, Error message: ${error.response.data.error}`)
+
       })
       .finally(() => setLoading(false))
   }
