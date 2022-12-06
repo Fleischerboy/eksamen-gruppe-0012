@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import lunchList from '../data/lunch.json'
 const prisma = new PrismaClient()
 const lunchFoodData = ['Taco', 'Pizza', 'Fisk', 'Pasta']
-const lunchData: any = lunchList.year //TODO MÅ FINNE EN MÅTE Å TYPE DETTE, FÅR IKKE DET TIL ATM
+const lunchData: any = lunchList.year
 const createData = async () => {
   const yearId = await prisma.year.create({
     data: {
