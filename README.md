@@ -1,6 +1,6 @@
 # eksamen-gruppe-0012
 
-## Getting Started
+## installation guide/Setup guide on how to run the application on your computer
 
 1. Open oppgave (1, 2 or 3) in your editor
 2. Install dependencies:
