@@ -20,7 +20,8 @@ start prisma studio: npx prisma studio
 run seed script: npm run prisma:seed or type this in your web browser: http://localhost:3000/api/demo
 ```
 
-
+oppgave 3 documentation locataion: oppgave_3/documentation/doc.md
+oppgave 3 Flow-diagram locataion: oppgave_3/diagrams/
 
 
 
